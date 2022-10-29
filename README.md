@@ -21,6 +21,6 @@
 # Важно
 Проект в качестве CMS очень сырой и кривой и требует дорабодок и багфиксов. Поэтому с багами обращайтесь в Issues проекта! Спасибо!
 # Контакты автора
-Telegram: t.me/CeVladimirich
+Telegram: https://t.me/CeVladimirich
 
-ВКонтакте: vk.com/cevladimrich
+ВКонтакте: https://vk.com/cevladimrich
