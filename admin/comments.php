@@ -1,8 +1,5 @@
 <?php
 
-//CUT HERE
-
-//NDR\DAN ADMIN LOGIN 2.1
 //by Darkine
 session_start();
 include 'config.php';
@@ -19,7 +16,7 @@ $ep = intval($edata['status']);
 
 mysqli_close($edblink);
 
-$keyid = 'CE'.'lGgaZyK5J'.$_SERVER["REMOTE_ADDR"];
+$keyid = ;
 $keyid = md5($keyid);
 
 if ( ( (is_null($_SESSION['devid'])) || $ep != 1 ) || ($_SESSION['devid'] != $keyid) ) {
@@ -29,7 +26,6 @@ if ( ( (is_null($_SESSION['devid'])) || $ep != 1 ) || ($_SESSION['devid'] != $ke
 	exit(0);
 }
 
-//CUT HERE
 
 ?>
 <?php
