@@ -7,7 +7,7 @@ $edblink = mysqli_connect($server, $user, $password);
 mysqli_select_db($edblink, $dbname);
 mysqli_query($edblink, "SET NAMES 'utf8'");
 $elogin = $_SESSION['login'];
-$equery = mysqli_query($edblink, "SELECT * FROM ceadmins WHERE login = '$elogin'");
+$equery = mysqli_query($edblink, "SELECT * FROM admins WHERE login = '$elogin'");
 $edata = mysqli_fetch_array($equery);
 
 $ep = intval($edata['status']);
@@ -39,7 +39,7 @@ $sid = $_GET['id'];
 $name = $_POST['name'];
 $date = $_POST['date'];
 $text = $_POST['text'];
-$url = 'http://cevladimirich.xyz/?page=news';
+$url = $url.'/?page=news';
 
 $text = nl2br($text);
 $text = preg_replace("/(^|[\n ])([\w]*?)((ht|f)tp(s)?:\/\/[\w]+[^ \,\"\n\r\t<]*)/is", "$1$2<a href=\"$3\" >$3</a>", $text);
@@ -58,7 +58,7 @@ $text = $_POST['text'];
 $url = $url.'/?page=news';
 
 $text = nl2br($text);
-mysqli_query($dblink, "INSERT INTO $table (name, date, body, url) VALUES ('$name', '$date', '$text', '$url')");
+mysqli_query($dblink, "INSERT INTO $table (title, date, text, url) VALUES ('$name', '$date', '$text', '$url')");
 $error = mysqli_error($dblink);
 //echo $error;
 echo '<meta http-equiv="refresh" content="0;URL=?page=news">';
