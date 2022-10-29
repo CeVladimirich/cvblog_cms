@@ -1,7 +1,7 @@
 <?php
 session_start();
 include 'config.php';
-$table = 'ceadmins';
+$table = 'admins';
 $dblink = mysqli_connect($server, $user, $password);
 mysqli_select_db($dblink, $dbname);
 mysqli_query($dblink, "SET NAMES 'utf8'");
