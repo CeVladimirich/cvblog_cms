@@ -20,7 +20,7 @@ while ($data = mysqli_fetch_array($query)) {
 	$passwd = $data['password'];
 	if ($login == $ruser and $passwd == $pw) {
 
-	$key = 'CE'.'lGgaZyK5J'.$_SERVER["REMOTE_ADDR"];
+	$key = //Придумаете сами.;
 	$key1 = md5($key);
 
 	$_SESSION['devid'] = $key1;
@@ -42,7 +42,7 @@ echo '<meta http-equiv="refresh" content="0;URL=?page=login">';
 
 break;
 default:
-$key = 'CE'.'lGgaZyK5J'.$_SERVER["REMOTE_ADDR"];
+$key = ;
 $key = md5($key);
 if ( $_SESSION['devid'] == $key ) {
 	echo '<meta http-equiv="refresh" content="0;URL=index.php">';
