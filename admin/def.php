@@ -1,8 +1,5 @@
 <?php
 
-//CUT HERE
-
-//NDR\DAN ADMIN LOGIN 2.1
 //by Darkine
 session_start();
 include 'config.php';
@@ -13,13 +10,11 @@ $elogin = $_SESSION['login'];
 $equery = mysqli_query($edblink, "SELECT * FROM ceadmins WHERE login = '$elogin'");
 $edata = mysqli_fetch_array($equery);
 
-//------------EDIT HERE------------
 $ep = intval($edata['status']);
-//---------------------------------
 
 mysqli_close($edblink);
 
-$keyid = 'CE'.'lGgaZyK5J'.$_SERVER["REMOTE_ADDR"];
+$keyid = ;
 $keyid = md5($keyid);
 
 if ( ( (is_null($_SESSION['devid'])) || $ep != 1 ) || ($_SESSION['devid'] != $keyid) ) {
