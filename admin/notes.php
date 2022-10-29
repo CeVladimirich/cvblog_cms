@@ -92,7 +92,7 @@ $query = mysqli_query($dblink, "SELECT * FROM `$table`");
 while ($data = mysqli_fetch_array($query)) {
 	echo '<article class="post">';
 	echo '<div class="post-content">';
-	echo '<h2 class="post-title">'.$data['name'].'</h2>';
+	echo '<h2 class="post-title">'.$data['title'].'</h2>';
 	echo '<b>Дата: '.$data['date'].'</b>';
 	echo '<p>'.$data['description'].'</p>';
 	echo '<a href="?page=notes&mode=addform&typeedit=on&id='.$data['id'].'"><b>РЕДАКТИРОВАТЬ</b></a> | <a href="?page=notes&mode=del&id='.$data['id'].'"><b>УДАЛИТЬ</b></a>';
