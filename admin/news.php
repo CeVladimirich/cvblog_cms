@@ -1,8 +1,5 @@
 <?php
 
-//CUT HERE
-
-//NDR\DAN ADMIN LOGIN 2.1
 //by Darkine
 session_start();
 include 'config.php';
@@ -13,17 +10,14 @@ $elogin = $_SESSION['login'];
 $equery = mysqli_query($edblink, "SELECT * FROM ceadmins WHERE login = '$elogin'");
 $edata = mysqli_fetch_array($equery);
 
-//------------EDIT HERE------------
 $ep = intval($edata['status']);
-//---------------------------------
 
 mysqli_close($edblink);
 
-$keyid = 'CE'.'lGgaZyK5J'.$_SERVER["REMOTE_ADDR"];
+$keyid = ;
 $keyid = md5($keyid);
 
 if ( ( (is_null($_SESSION['devid'])) || $ep != 1 ) || ($_SESSION['devid'] != $keyid) ) {
-	//echo $_SESSION['devid']." RECV ".$ep." MUST ".$keyid;
 	echo '<meta http-equiv="refresh" content="0;URL=?page=login">';
 
 	exit(0);
@@ -52,7 +46,7 @@ $text = preg_replace("/(^|[\n ])([\w]*?)((ht|f)tp(s)?:\/\/[\w]+[^ \,\"\n\r\t<]*)
 $desc = nl2br($desc);
 $desc = preg_replace("/(^|[\n ])([\w]*?)((ht|f)tp(s)?:\/\/[\w]+[^ \,\"\n\r\t<]*)/is", "$1$2<a href=\"$3\" >$3</a>", $desc);
 
-mysqli_query($dblink, "UPDATE $table SET name = '$name', date = '$date', body = '$text', url = '$url' WHERE id = $sid");
+mysqli_query($dblink, "UPDATE $table SET title = '$name', date = '$date', text = '$text', url = '$url' WHERE id = $sid");
 $error = mysqli_error($dblink);
 //echo $error;
 echo '<meta http-equiv="refresh" content="0;URL=?page=news">';
@@ -61,7 +55,7 @@ case add:
 $date = $_POST['date'];
 $name = $_POST['name'];
 $text = $_POST['text'];
-$url = 'http://cevladimirich.xyz/?page=news';
+$url = $url.'/?page=news';
 
 $text = nl2br($text);
 mysqli_query($dblink, "INSERT INTO $table (name, date, body, url) VALUES ('$name', '$date', '$text', '$url')");
