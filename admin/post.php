@@ -1,8 +1,5 @@
 <?php
 
-//CUT HERE
-
-//NDR\DAN ADMIN LOGIN 2.1
 //by Darkine
 session_start();
 include 'config.php';
@@ -10,16 +7,14 @@ $edblink = mysqli_connect($server, $user, $password);
 mysqli_select_db($edblink, $dbname);
 mysqli_query($edblink, "SET NAMES 'utf8'");
 $elogin = $_SESSION['login'];
-$equery = mysqli_query($edblink, "SELECT * FROM ceadmins WHERE login = '$elogin'");
+$equery = mysqli_query($edblink, "SELECT * FROM admins WHERE login = '$elogin'");
 $edata = mysqli_fetch_array($equery);
 
-//------------EDIT HERE------------
 $ep = intval($edata['status']);
-//---------------------------------
 
 mysqli_close($edblink);
 
-$keyid = 'CE'.'lGgaZyK5J'.$_SERVER["REMOTE_ADDR"];
+$keyid = ;
 $keyid = md5($keyid);
 
 if ( ( (is_null($_SESSION['devid'])) || $ep != 1 ) || ($_SESSION['devid'] != $keyid) ) {
@@ -53,7 +48,7 @@ $text = preg_replace("/(^|[\n ])([\w]*?)((ht|f)tp(s)?:\/\/[\w]+[^ \,\"\n\r\t<]*)
 $desc = nl2br($desc);
 $desc = preg_replace("/(^|[\n ])([\w]*?)((ht|f)tp(s)?:\/\/[\w]+[^ \,\"\n\r\t<]*)/is", "$1$2<a href=\"$3\" >$3</a>", $desc);
 
-mysqli_query($dblink, "UPDATE $table SET name = '$name', date = '$date', body = '$text', description = '$desc', img = '$img' WHERE id = $sid");
+mysqli_query($dblink, "UPDATE $table SET title = '$name', date = '$date', text = '$text', description = '$desc', img = '$img' WHERE id = $sid");
 $error = mysqli_error($dblink);
 //echo $error;
 echo '<meta http-equiv="refresh" content="0;URL=?page=post">';
@@ -66,7 +61,7 @@ $text = $_POST['text'];
 $desc = $_POST['desc'];
 
 $text = nl2br($text);
-mysqli_query($dblink, "INSERT INTO $table (name, date, body, description, img) VALUES ('$name', '$date', '$text', '$desc', '$img')");
+mysqli_query($dblink, "INSERT INTO $table (title, date, text, description, img) VALUES ('$name', '$date', '$text', '$desc', '$img')");
 $error = mysqli_error($dblink);
 //echo $error;
 echo '<meta http-equiv="refresh" content="0;URL=?page=post">';
@@ -81,8 +76,8 @@ if ($_GET['typeedit'] == 'on') {
 $sid = $_GET['id'];
 $squery = mysqli_query($dblink, "SELECT * FROM $table WHERE id = $sid");
 $sdata = mysqli_fetch_array($squery);
-$name = $sdata['name'];
-$text = $sdata['body'];
+$name = $sdata['title'];
+$text = $sdata['text'];
 $date = $sdata['date'];
 $img = $sdata['img'];
 $date = date("Y-m-d", strtotime($datesrc));
