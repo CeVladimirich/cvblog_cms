@@ -73,8 +73,8 @@ if ($_GET['typeedit'] == 'on') {
 $sid = $_GET['id'];
 $squery = mysqli_query($dblink, "SELECT * FROM $table WHERE id = $sid");
 $sdata = mysqli_fetch_array($squery);
-$name = $sdata['name'];
-$text = $sdata['body'];
+$name = $sdata['title'];
+$text = $sdata['text'];
 $date = $sdata['date'];
 $date = date("Y-m-d", strtotime($datesrc));
 echo '<center><table><form id="form1" name="form1" enctype="multipart/form-data" method="post" action="?page=news&mode=edit&id='.$sid.'">';
