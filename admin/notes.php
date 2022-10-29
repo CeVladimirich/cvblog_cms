@@ -10,9 +10,7 @@ $elogin = $_SESSION['login'];
 $equery = mysqli_query($edblink, "SELECT * FROM admins WHERE login = '$elogin'");
 $edata = mysqli_fetch_array($equery);
 
-//------------EDIT HERE------------
 $ep = intval($edata['status']);
-//---------------------------------
 
 mysqli_close($edblink);
 
@@ -73,8 +71,8 @@ if ($_GET['typeedit'] == 'on') {
 $sid = $_GET['id'];
 $squery = mysqli_query($dblink, "SELECT * FROM $table WHERE id = $sid");
 $sdata = mysqli_fetch_array($squery);
-$name = $sdata['name'];
-$text = $sdata['body'];
+$name = $sdata['title'];
+$text = $sdata['text'];
 $date = $sdata['date'];
 $img = $sdata['img'];
 $date = date("Y-m-d", strtotime($datesrc));
