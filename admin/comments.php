@@ -7,7 +7,7 @@ $edblink = mysqli_connect($server, $user, $password);
 mysqli_select_db($edblink, $dbname);
 mysqli_query($edblink, "SET NAMES 'utf8'");
 $elogin = $_SESSION['login'];
-$equery = mysqli_query($edblink, "SELECT * FROM ceadmins WHERE login = '$elogin'");
+$equery = mysqli_query($edblink, "SELECT * FROM admins WHERE login = '$elogin'");
 $edata = mysqli_fetch_array($equery);
 
 $ep = intval($edata['status']);
