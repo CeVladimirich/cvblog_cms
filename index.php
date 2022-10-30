@@ -20,7 +20,7 @@
 				mysqli_select_db($dblink, $dbname);
 				$query = mysqli_query($dblink, "SELECT * FROM topics");
 				while($data = mysqli_fetch_array($query)) {
-					echo '<li><a href="?page='.$data['id'].'">'.$data['topic'].'</a></li>';
+					echo '<li><a href="?page='.$data['id'].'">'.$data['topic'].'</a></li> ';
 				}
 				?>
 				</ul>
@@ -32,7 +32,7 @@
 						<?php
 $op = $_GET['page'];
 switch($op) {
-case $op:
+case $op: //помогите что-то придумать)))
 include 'page.php';
 break;
 default:
