@@ -24,6 +24,8 @@
 # Важно
 Проект в качестве CMS очень сырой и кривой и требует дорабодок и багфиксов. Поэтому с багами и с предложениями обращайтесь в Issues проекта! Спасибо!
 # Контакты автора
+Канал с релизами в Telegram: https://t.me/ceblog_cms
+
 Telegram: https://t.me/CeVladimirich
 
 ВКонтакте: https://vk.com/cevladimrich
