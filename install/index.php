@@ -43,12 +43,9 @@ $url = "'.$url.'";
 $dblink = mysqli_connect($host, $login_mysql, $pw_mysql);
 mysqli_query($dblink, "CREATE DATABASE $name_mysql");
 mysqli_select_db($dblink, $name_mysql);
-mysqli_query($dblink, "CREATE TABLE articles (id int NOT NULL AUTO_INCREMENT, title text, description text, img text, text text, date date, PRIMARY KEY (id))");
-mysqli_query($dblink, "CREATE TABLE admins (id int NOT NULL AUTO_INCREMENT, login text, password text, status int, PRIMARY KEY (id))");
-mysqli_query($dblink, "INSERT INTO admins (login, password, status) VALUES ('$admin_login', '$admin_pw', 1)");
-mysqli_query($dblink, "CREATE TABLE comments (id int NOT NULL AUTO_INCREMENT, author text, email text, text text, date date, post_id int, PRIMARY KEY (id))");
-mysqli_query($dblink, "CREATE TABLE notes (id int NOT NULL AUTO_INCREMENT, title text, date date, text text, PRIMARY KEY(id))");
-mysqli_query($dblink, "CREATE TABLE news (id int NOT NULL AUTO_INCREMENT, title text, text text, date date, url text, PRIMARY KEY(id))");
+mysqli_query($dblink, "CREATE TABLE posts (id int NOT NULL AUTO_INCREMENT, date timestamp, topicid int, postflag int default 2, title text, post text, img text, url text, PRIMARY KEY(id))");
+mysqli_query($dblink, "CREATE TABLE topics (id int NOT NULL AUTO_INCREMENT, topic text, position int, PRIMARY KEY (id))");
+mysqli_query($dblink, "CREATE TABLE comments (id int NOT NULL AUTO_INCREMENT, date timestamp, post_id int, flag int default 1, author text, text text, PRIMARY KEY(id))")
 //CREATING CONFIG
 $fo = fopen('config.php', 'a');
 fwrite($fo, $content);
