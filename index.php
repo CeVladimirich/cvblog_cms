@@ -13,10 +13,16 @@
 				<a href="<?php include 'config.php'; echo $url; ?>" id="logo"><p><?php include 'config.php'; echo $name; ?></p></a>
 				<div class="nav-toggle"><span></span></div>
 				<ul id="menu">
-				<li><a href="?page=post">статьи</a></li>
-				<li><a href="?page=news">новости</a></li>
-				<li><a href="?page=me">обо мне</a></li>
-				<li><a href="?page=note">заметки</a></li>
+				<?php
+				include 'config.php';
+				$table = 'topics';
+				$dblink = mysqli_connect($server, $user, $password);
+				mysqli_select_db($dblink, $dbname);
+				$query = mysqli_query($dblink, "SELECT * FROM topics");
+				while($data = mysqli_fetch_array($query)) {
+					echo '<li><a href="?page='.$data['id'].'">'.$data['topic'].'</a></li>';
+				}
+				?>
 				</ul>
 			</nav>
 		</header>
@@ -26,20 +32,9 @@
 						<?php
 $op = $_GET['page'];
 switch($op) {
-case note:
-include 'notes.php';
+case $op:
+include 'page.php';
 break;
-case me:
-include 'me.php';
-break;
-case news:
-include 'news.php';
-break;
-case post:
-include 'posts.php';
-break;
-case com:
-include 'comments.php';
 default:
 include 'inx.php';
 }

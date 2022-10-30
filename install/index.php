@@ -43,9 +43,12 @@ $url = "'.$url.'";
 $dblink = mysqli_connect($host, $login_mysql, $pw_mysql);
 mysqli_query($dblink, "CREATE DATABASE $name_mysql");
 mysqli_select_db($dblink, $name_mysql);
-mysqli_query($dblink, "CREATE TABLE posts (id int NOT NULL AUTO_INCREMENT, date timestamp, topicid int, postflag int default 2, title text, post text, img text, url text, PRIMARY KEY(id))");
+mysqli_query($dblink, "CREATE TABLE posts (id int NOT NULL AUTO_INCREMENT, date timestamp, topicid int, postflag int default 2, title text, post text, img text, url text, desc text, PRIMARY KEY(id))");
 mysqli_query($dblink, "CREATE TABLE topics (id int NOT NULL AUTO_INCREMENT, topic text, position int, PRIMARY KEY (id))");
-mysqli_query($dblink, "CREATE TABLE comments (id int NOT NULL AUTO_INCREMENT, date timestamp, post_id int, flag int default 1, author text, text text, PRIMARY KEY(id))")
+mysqli_query($dblink, "CREATE TABLE comments (id int NOT NULL AUTO_INCREMENT, date timestamp, post_id int, flag int default 1, author text, text text, PRIMARY KEY(id))");
+mysqli_query($dblink, "INSERT INTO topics (topic, position) VALUES ('статьи', 0), ('заметки', 1), ('новости', 2), ('обо мне', 3)");
+mysqli_query($dblink, "CREATE TABLE admins (id int NOT NULL AUTO_INCREMENT, login text, password text, status int, PRIMARY KEY (id))");
+mysqli_query($dblink, "INSERT INTO admins (login, password, status) VALUES ('$admin_login', '$admin_pw', 1)");
 //CREATING CONFIG
 $fo = fopen('config.php', 'a');
 fwrite($fo, $content);
@@ -71,6 +74,7 @@ echo '<input type="submit" value="Установить">';
 break;
 default:
 echo '<h1>Добро пожаловать в установку!</h1>';
+echo '<b><font color="red">Вы скачали данную версию с Experimental ветки!<br />В случае появления любых багов, которые есть в данной версии, обращайтесь в <a href="https://github.com/CeVladimirich/cvblog_cms/issues">Issues</a> проекта на GitHub! Также не исключаются непредвиденные ошибки!</font></b><br>';
 echo '<p>Это - установщик CMS для вашего блога. Даже не CMS, базы для разработки и доработки. <b>В него входит:</b>';
 echo '<ul><li>Добавление, редактирование и удаление постов</li>';
 echo '<li>Добавление, редактирование и удаление заметок (или кратких постов, как захотите назвать)</li>';
