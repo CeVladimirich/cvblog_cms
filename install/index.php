@@ -43,7 +43,7 @@ $url = "'.$url.'";
 $dblink = mysqli_connect($host, $login_mysql, $pw_mysql);
 mysqli_query($dblink, "CREATE DATABASE $name_mysql");
 mysqli_select_db($dblink, $name_mysql);
-mysqli_query($dblink, "CREATE TABLE posts (id int NOT NULL AUTO_INCREMENT, date timestamp, topicid int, postflag int default 2, title text, post text, img text, url text, desc text, PRIMARY KEY(id))");
+mysqli_query($dblink, "CREATE TABLE posts (id int NOT NULL AUTO_INCREMENT, date timestamp, topicid int, postflag int DEFAULT 2, title text, post text, url text, description text, PRIMARY KEY(id))");
 mysqli_query($dblink, "CREATE TABLE topics (id int NOT NULL AUTO_INCREMENT, topic text, position int, PRIMARY KEY (id))");
 mysqli_query($dblink, "CREATE TABLE comments (id int NOT NULL AUTO_INCREMENT, date timestamp, post_id int, flag int default 1, author text, text text, PRIMARY KEY(id))");
 mysqli_query($dblink, "INSERT INTO topics (topic, position) VALUES ('статьи', 0), ('заметки', 1), ('новости', 2), ('обо мне', 3)");
