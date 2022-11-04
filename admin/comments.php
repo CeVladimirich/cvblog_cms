@@ -14,7 +14,7 @@ $ep = intval($edata['status']);
 
 mysqli_close($edblink);
 
-$keyid = ;
+$keyid = 'CE'.$key.$_SERVER["REMOTE_ADDR"];
 $keyid = md5($keyid);
 
 if ( ( (is_null($_SESSION['devid'])) || $ep != 1 ) || ($_SESSION['devid'] != $keyid) ) {
