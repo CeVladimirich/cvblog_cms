@@ -21,20 +21,14 @@
 				<?php
 				$yt = $_GET['page'];
 				switch($yt) {
-				case login:
-				include 'adminlogin.php';
-				break;
-				case comments:
-				include 'comments.php';
-				break;
-				case notes:
-				include 'notes.php';
-				break;
-				case news:
-				include 'news.php';
+				case settings:
+				include 'settings.php';
 				break;
 				case post:
 				include 'post.php';
+				break;
+				case login:
+				include 'adminlogin.php';
 				break;
 				default:
 				include 'def.php';

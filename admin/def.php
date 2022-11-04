@@ -3,7 +3,7 @@
 //by Darkine
 session_start();
 include 'config.php';
-$edblink = mysqli_connect($server, $user, $password);
+$edblink = mysqli_connect($server, $user, $password); 
 mysqli_select_db($edblink, $dbname);
 mysqli_query($edblink, "SET NAMES 'utf8'");
 $elogin = $_SESSION['login'];
@@ -14,7 +14,7 @@ $ep = intval($edata['status']);
 
 mysqli_close($edblink);
 
-$keyid = ;
+$keyid = 'CE'.$key.$_SERVER["REMOTE_ADDR"];
 $keyid = md5($keyid);
 
 if ( ( (is_null($_SESSION['devid'])) || $ep != 1 ) || ($_SESSION['devid'] != $keyid) ) {
@@ -27,5 +27,14 @@ if ( ( (is_null($_SESSION['devid'])) || $ep != 1 ) || ($_SESSION['devid'] != $ke
 
 ?>
 <?php
-echo '<center><a href="?page=post"><b>ПОСТЫ</b></a> | <a href="?page=news"><b>НОВОСТИ</b></a> | <a href="?page=notes"><b>ЗАМЕТКИ</b></a> | <a href="?page=comments"><b>КОММЕНТАРИИ</b></a> | <a href="?page=login&f=logout"><b>ВЫХОД</b></a></center>';
+include 'config.php';
+echo '<center>';
+$dblink = mysqli_connect($server, $user, $password);
+mysqli_select_db($dblink, $dbname);
+mysqli_query($dblink, "SET NAMES 'utf8'");
+$query = mysqli_query($dblink, "SELECT * FROM topics");
+while($data = mysqli_fetch_array($query)) {
+echo '| <a href="?page=post&topicid='.$data['id'].'"><b>'.$data['topic'].'</b></a> ';
+}
+echo '| <a href="?page=settings"><b>настройки</b></a> | <a href="?page=login&f=logout"><b>выход</b></a> |</center>';
 ?>
