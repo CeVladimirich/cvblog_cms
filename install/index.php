@@ -15,6 +15,7 @@ echo 'Удалите этот файл, а <em>config.php</em> перенеси�
 echo 'Спасибо за использование CVBlog CMS!';
 break;
 case step2:
+include 'gen.php';
 echo 'Подождите...';
 $blog_name = $_POST['blog_name'];
 $login_mysql = $_POST['login_mysql'];
@@ -30,6 +31,7 @@ $admin_pw = md5($admin_pw);
 $email = $_POST['email'];
 $host = $_POST['host_mysql'];
 $date = date('Y-m-d');
+$keyid = random_key();
 $content = '<?php
 $server = "'.$host.'";
 $user = "'.$login_mysql.'";
@@ -38,6 +40,7 @@ $dbname = "'.$name_mysql.'";
 $email = "'.$email.'";
 $name = "'.$blog_name.'";
 $url = "'.$url.'";
+$key = "'.$keyid.'";
 ?>';
 //INSTALLING DATABASE
 $dblink = mysqli_connect($host, $login_mysql, $pw_mysql);
