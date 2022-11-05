@@ -27,5 +27,5 @@ if ( ( (is_null($_SESSION['devid'])) || $ep != 1 ) || ($_SESSION['devid'] != $ke
 
 ?>
 <?php
-echo '<center><a href="?page=post"><b>ПОСТЫ</b></a> | <a href="?page=news"><b>НОВОСТИ</b></a> | <a href="?page=notes"><b>ЗАМЕТКИ</b></a> | <a href="?page=comments"><b>КОММЕНТАРИИ</b></a> | <a href="?page=login&f=logout"><b>ВЫХОД</b></a></center>';
+echo '<center><a href="?page=post"><b>ПОСТЫ</b></a> | <a href="?page=news"><b>НОВОСТИ</b></a> | <a href="?page=notes"><b>ЗАМЕТКИ</b></a> | <a href="?page=comments"><b>КОММЕНТАРИИ</b></a> | <a href="?page=settings"><b>НАСТРОЙКИ</b></a> | <a href="?page=login&f=logout"><b>ВЫХОД</b></a></center>';
 ?>

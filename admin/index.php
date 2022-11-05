@@ -21,6 +21,9 @@
 				<?php
 				$yt = $_GET['page'];
 				switch($yt) {
+				case settings:
+				include 'settings.php';
+				break;
 				case login:
 				include 'adminlogin.php';
 				break;
