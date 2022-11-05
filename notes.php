@@ -2,7 +2,7 @@
 	$arm_1 = $_GET['type'];
 	switch($arm_1) {
 	case read:
-			include 'config.php';
+			include "admin/config.php";
 			$table = 'notes';
 			$dblink = mysqli_connect($server, $user, $password);
 			mysqli_select_db($dblink, $dbname);
@@ -18,7 +18,7 @@
 			}
 	break;
 	default:
-		include 'config.php';
+		include "admin/config.php";
 		$table = 'notes';
 		$dblink = mysqli_connect($server, $user, $password);
 		mysqli_select_db($dblink, $dbname);

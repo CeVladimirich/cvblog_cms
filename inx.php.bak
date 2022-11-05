@@ -1,5 +1,5 @@
 <?php
-include "admin/config.php";
+include 'config.php';
 $table = 'articles';
 $dblink = mysqli_connect($server, $user, $password);
 mysqli_select_db($dblink, $dbname);

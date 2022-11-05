@@ -5,7 +5,7 @@
 			switch($arm_1) {
 			case com:
 				$id = $_GET['post_id'];
-				include 'config.php';
+				include "admin/config.php";
 				$table1 = 'comments';
 				$dblink = mysqli_connect($server, $user, $password);
 				mysqli_select_db($dblink, $dbname);
@@ -18,7 +18,7 @@
 				break;
 			case read:
 				$sid = $_GET['id'];
-				include 'config.php';
+				include "admin/config.php";
 				$table = 'articles';
 				$dblink = mysqli_connect($server, $user, $password);
 				mysqli_select_db($dblink, $dbname);
@@ -49,7 +49,7 @@
 			break;
 			default:
 				echo '<h2>все статьи.</h2><br>';
-				include 'config.php';
+				include "admin/config.php";
 				$table = 'articles';
 				$dblink = mysqli_connect($server, $user, $password);
 				mysqli_select_db($dblink, $dbname);

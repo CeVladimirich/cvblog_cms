@@ -1,6 +1,6 @@
 <h2>новости.</h2><br>
 <?php
-include 'config.php';
+include "admin/config.php";
 $table = 'news';
 $dblink = mysqli_connect($server, $user, $password);
 mysqli_select_db($dblink, $dbname);
