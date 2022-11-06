@@ -36,5 +36,5 @@ $query = mysqli_query($dblink, "SELECT * FROM topics");
 while($data = mysqli_fetch_array($query)) {
 echo '| <a href="?page=post&topicid='.$data['id'].'"><b>'.$data['topic'].'</b></a> ';
 }
-echo '| <a href="?page=settings"><b>настройки</b></a> | <a href="?page=login&f=logout"><b>выход</b></a> |</center>';
+echo '| <a href="?page=comments"><b>комментарии</b></a> | <a href="?page=settings"><b>настройки</b></a> | <a href="?page=login&f=logout"><b>выход</b></a> |</center>';
 ?>

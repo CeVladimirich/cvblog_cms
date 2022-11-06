@@ -21,6 +21,9 @@
 				<?php
 				$yt = $_GET['page'];
 				switch($yt) {
+				case comments:
+				include 'comments.php';
+				break;
 				case settings:
 				include 'settings.php';
 				break;
