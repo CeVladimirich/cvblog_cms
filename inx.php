@@ -3,7 +3,7 @@ include '/admin/config.php';
 $table = 'posts';
 $dblink = mysqli_connect($server, $user, $password);
 mysqli_select_db($dblink, $dbname);
-$query = mysqli_query($dblink, "SELECT * FROM $table WHERE topicid = 1 ORDER BY date DESC");
+$query = mysqli_query($dblink, "SELECT * FROM $table WHERE topicid = 1 AND postflag = 1 ORDER BY date DESC");
 while($data = mysqli_fetch_array($query)) {
 echo '<article class="post" id="'.$data['id'].'">';
 echo '<div class="post-content">';

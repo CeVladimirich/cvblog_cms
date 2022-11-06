@@ -33,7 +33,7 @@ echo 'Ваше имя*: <input type="text" name="name" required="required"><br>'
 echo 'Сам комментарий*:<br><textarea name="text" rows="20" cols="70" required="required"></textarea><br>';
 echo '<input type="submit" value="Отправить"></form>';
 echo '* - все поля обязательны!<br><hr>';
-$query = mysqli_query($dblink, "SELECT * FROM comments WHERE post_id = $ot ORDER BY id DESC");
+$query = mysqli_query($dblink, "SELECT * FROM comments WHERE post_id = $ot AND flag = 1 ORDER BY id DESC");
 while($data = mysqli_fetch_array($query)) {
 $date = $data['date'];
 $date = date("d.m.Y", strtotime($date));
@@ -45,7 +45,7 @@ echo '</article>';
 }
 break;
 default:
-$query = mysqli_query($dblink, "SELECT * FROM $table WHERE topicid = $oh ORDER BY date DESC");
+$query = mysqli_query($dblink, "SELECT * FROM $table WHERE topicid = $oh AND postflag = 1 ORDER BY date DESC");
 $query1 = mysqli_query($dblink, "SELECT * FROM $table1 WHERE id = $oh");
 $sdata = mysqli_fetch_array($query1);
 while ($data = mysqli_fetch_array($query)) {
