@@ -88,7 +88,6 @@ $name = $_POST['name'];
 $img = $_POST['img'];
 $text = $_POST['text'];
 $desc = $_POST['desc'];
-$text = nl2br($text);
 $text = base64_encode($text);
 $desc = base64_encode($desc);
 mysqli_query($dblink, "INSERT INTO $table (title, date, text, description, img) VALUES ('$name', '$date', '$text', '$desc', '$img')");

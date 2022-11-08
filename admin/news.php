@@ -43,11 +43,7 @@ $url = $url.'/?page=news';
 
 $text = nl2br($text);
 $text = preg_replace("/(^|[\n ])([\w]*?)((ht|f)tp(s)?:\/\/[\w]+[^ \,\"\n\r\t<]*)/is", "$1$2<a href=\"$3\" >$3</a>", $text);
-$desc = nl2br($desc);
-$desc = preg_replace("/(^|[\n ])([\w]*?)((ht|f)tp(s)?:\/\/[\w]+[^ \,\"\n\r\t<]*)/is", "$1$2<a href=\"$3\" >$3</a>", $desc);
-
 $text = base64_encode($text);
-$desc = base64_encode($desc);
 mysqli_query($dblink, "UPDATE $table SET title = '$name', date = '$date', text = '$text', url = '$url' WHERE id = $sid");
 $error = mysqli_error($dblink);
 //echo $error;
@@ -80,8 +76,6 @@ $date = $_POST['date'];
 $name = $_POST['name'];
 $text = $_POST['text'];
 $url = $url.'/?page=news';
-
-$text = nl2br($text);
 $text = base64_encode($text);
 mysqli_query($dblink, "INSERT INTO $table (title, date, text, url) VALUES ('$name', '$date', '$text', '$url')");
 $error = mysqli_error($dblink);
@@ -102,6 +96,7 @@ $sdata = mysqli_fetch_array($squery);
 $name = $sdata['title'];
 $text = $sdata['text'];
 $date = $sdata['date'];
+$text = base64_decode($text);
 $date = date("Y-m-d", strtotime($datesrc));
 echo '<center><table><form id="form1" name="form1" enctype="multipart/form-data" method="post" action="?page=news&mode=edit&id='.$sid.'">';
 } else {
@@ -116,11 +111,12 @@ default:
 echo '<a href="?page=news&mode=addform"><b>ДОБАВИТЬ НОВОСТЬ</b></a>';
 $query = mysqli_query($dblink, "SELECT * FROM `$table`");
 while ($data = mysqli_fetch_array($query)) {
+	$text = base64_decode($data['text']);
 	echo '<article class="post">';
 	echo '<div class="post-content">';
 	echo '<h2 class="post-title">'.$data['title'].'</h2>';
 	echo '<b>Дата: '.$data['date'].'</b>';
-	echo '<p>'.$data['text'].'</p>';
+	echo '<p>'.$text.'</p>';
 	echo '<a href="?page=news&mode=addform&typeedit=on&id='.$data['id'].'"><b>РЕДАКТИРОВАТЬ</b></a> | <a href="?page=news&mode=del&id='.$data['id'].'"><b>УДАЛИТЬ</b></a>';
 	echo '</div>';
 	echo '<hr>';

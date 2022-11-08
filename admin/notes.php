@@ -39,11 +39,8 @@ $sid = $_GET['id'];
 $name = $_POST['name'];
 $date = $_POST['date'];
 $text = $_POST['text'];
-
 $text = nl2br($text);
 $text = preg_replace("/(^|[\n ])([\w]*?)((ht|f)tp(s)?:\/\/[\w]+[^ \,\"\n\r\t<]*)/is", "$1$2<a href=\"$3\" >$3</a>", $text);
-$desc = nl2br($desc);
-$desc = preg_replace("/(^|[\n ])([\w]*?)((ht|f)tp(s)?:\/\/[\w]+[^ \,\"\n\r\t<]*)/is", "$1$2<a href=\"$3\" >$3</a>", $desc);
 $text = base64_encode($text);
 mysqli_query($dblink, "UPDATE $table SET title = '$name', date = '$date', text = '$text' WHERE id = $sid");
 $error = mysqli_error($dblink);
@@ -77,7 +74,6 @@ $date = $_POST['date'];
 $name = $_POST['name'];
 $text = $_POST['text'];
 $text = base64_encode($text);
-$text = nl2br($text);
 mysqli_query($dblink, "INSERT INTO $table (title, date, text) VALUES ('$name', '$date', '$text')");
 $error = mysqli_error($dblink);
 //echo $error;
@@ -99,7 +95,7 @@ $text = $sdata['text'];
 $date = $sdata['date'];
 $img = $sdata['img'];
 $date = date("Y-m-d", strtotime($datesrc));
-$desc = $sdata['description'];
+$text = base64_decode($text);
 echo '<center><table><form id="form1" name="form1" enctype="multipart/form-data" method="post" action="?page=notes&mode=edit&id='.$sid.'">';
 } else {
 echo '<center><table><form id="form1" name="form1" enctype="multipart/form-data" method="post" action="?page=notes&mode=add&type=viewpost">';
@@ -117,7 +113,6 @@ while ($data = mysqli_fetch_array($query)) {
 	echo '<div class="post-content">';
 	echo '<h2 class="post-title">'.$data['title'].'</h2>';
 	echo '<b>Дата: '.$data['date'].'</b>';
-	echo '<p>'.$data['description'].'</p>';
 	echo '<a href="?page=notes&mode=addform&typeedit=on&id='.$data['id'].'"><b>РЕДАКТИРОВАТЬ</b></a> | <a href="?page=notes&mode=del&id='.$data['id'].'"><b>УДАЛИТЬ</b></a>';
 	echo '</div>';
 	echo '<hr>';
