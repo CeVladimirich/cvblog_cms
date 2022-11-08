@@ -54,6 +54,35 @@ $error = mysqli_error($dblink);
 echo '<meta http-equiv="refresh" content="0;URL=?page=post">';
 break;
 case add:
+$type = $_GET['type'];
+switch($type) {
+case viewpost:
+$date = $_POST['date'];
+$date = date("Y-m-d H:i", strtotime($date));
+$name = $_POST['name'];
+$img = $_POST['img'];
+$text = $_POST['text'];
+$desc = $_POST['desc'];
+$topic = $_POST['topicid'];
+$text = nl2br($text);
+$desc = nl2br($desc);
+echo '<article class="post" id="">';
+echo '<div class="post-content">';
+echo '<em>Убедитесь, что всё выглядит именно так, как вы планировали, и нажмите снизу кнопку "Добавить"</em><br />';
+echo '<h2 class="post-title">'.$name.'</h2>';
+echo '<em>Дата создания: '.$date.'</em><br>';
+echo $text;
+echo '<form action="?page=post&mode=add" method="post">';
+echo '<input type="hidden" name="name" value="'.$name.'">';
+echo '<input type="hidden" name="text" value="'.$text.'">';
+echo '<input type="hidden" name="date" value="'.$date.'">';
+echo '<input type="hidden" name="img" value="'.$img.'">';
+echo '<input type="hidden" name="topicid" value="'.$topic.'">';
+echo '<input type="hidden" name="desc" value="'.$desc.'">';
+echo '<input type="submit" value="Добавить"></form>';
+echo '</div></article>';
+break;
+default:
 $date = $_POST['date'];
 $name = $_POST['name'];
 $img = $_POST['img'];
@@ -66,6 +95,7 @@ mysqli_query($dblink, "INSERT INTO $table (title, date, text, description, img) 
 $error = mysqli_error($dblink);
 //echo $error;
 echo '<meta http-equiv="refresh" content="0;URL=?page=post">';
+}
 break;
 case del:
 $sid = $_GET['id'];
@@ -85,7 +115,7 @@ $date = date("Y-m-d", strtotime($datesrc));
 $desc = $sdata['description'];
 echo '<center><table><form id="form1" name="form1" enctype="multipart/form-data" method="post" action="?page=post&mode=edit&id='.$sid.'">';
 } else {
-echo '<center><table><form id="form1" name="form1" enctype="multipart/form-data" method="post" action="?page=post&mode=add">';
+echo '<center><table><form id="form1" name="form1" enctype="multipart/form-data" method="post" action="?page=post&mode=add&type=viewpost">';
 }
 echo '<tr><td align="center">Название: </td><td><input type="text" name="name" size="30" value="'.$name.'"></td></tr>';
 echo '<tr><td align="center">Дата: </td><td><input type="date" name="date" size="30" value="'.$date.'"></td></tr>';
