@@ -60,6 +60,7 @@ fwrite($fo, $content);
 fclose($fo);
 echo '<meta http-equiv="refresh" content="2;URL=?step=step3">';
 break;
+
 case step1:
 echo '<b>Установка</b>';
 echo '<form method="post" action="?step=step2" name="install">';

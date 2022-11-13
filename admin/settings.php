@@ -57,6 +57,7 @@ echo '<label>Повторите пароль: </label><input type="password" nam
 echo '<input type="submit" value="Применить">';
 echo '</form></center>';
 break;
+
 case setconf:
 include 'gen.php';
 $email = $_POST['email'];

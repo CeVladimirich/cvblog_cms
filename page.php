@@ -55,6 +55,7 @@ echo '</div></article>';
 }
 }
 break;
+
 default:
 $query = mysqli_query($dblink, "SELECT * FROM $table WHERE topicid = $oh AND postflag = 1 ORDER BY date DESC");
 $query1 = mysqli_query($dblink, "SELECT * FROM $table1 WHERE id = $oh");

@@ -126,6 +126,7 @@ $date = date("Y-m-d", strtotime($datesrc));
 $desc = $sdata['description'];
 $desc = base64_decode($desc);
 $text = base64_decode($text);
+
 echo '<center><table><form id="form1" name="form1" enctype="multipart/form-data" method="post" action="?page=post&topicid='.$tid.'&mode=edit&id='.$sid.'">';
 } else {
 echo '<center><table><form id="form1" name="form1" enctype="multipart/form-data" method="post" action="?page=post&mode=add&type=viewpost">';
