@@ -44,7 +44,7 @@ $text = nl2br($text);
 $text = preg_replace("/(^|[\n ])([\w]*?)((ht|f)tp(s)?:\/\/[\w]+[^ \,\"\n\r\t<]*)/is", "$1$2<a href=\"$3\" >$3</a>", $text);
 $desc = nl2br($desc);
 $desc = preg_replace("/(^|[\n ])([\w]*?)((ht|f)tp(s)?:\/\/[\w]+[^ \,\"\n\r\t<]*)/is", "$1$2<a href=\"$3\" >$3</a>", $desc);
-
+$text = base64_encode($text);
 mysqli_query($dblink, "UPDATE $table SET title = '$name', date = '$date', text = '$text' WHERE id = $sid");
 $error = mysqli_error($dblink);
 //echo $error;
@@ -54,7 +54,7 @@ case add:
 $date = $_POST['date'];
 $name = $_POST['name'];
 $text = $_POST['text'];
-
+$text = base64_encode($text);
 $text = nl2br($text);
 mysqli_query($dblink, "INSERT INTO $table (title, date, text) VALUES ('$name', '$date', '$text')");
 $error = mysqli_error($dblink);

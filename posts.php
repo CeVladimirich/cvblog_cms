@@ -24,11 +24,12 @@
 				mysqli_select_db($dblink, $dbname);
 				$sql = mysqli_query($dblink, "SELECT * FROM $table WHERE `id`=$sid");
 				while ($row = mysqli_fetch_array($sql)) {
+					$post = base64_decode($row['text']);
 					echo '<article class="post" id="'.$row['id'].'">
 					<div class="post-content">
 					<h2 class="post-title">'.$row['title'].'</h2><br>
 					<p><em>Дата создания: '.$row['date'].'</em></p>';
-					echo $row['text'];
+					echo $post;
 					echo '</div><hr>';
 					echo '<h2>комментарии</h2>';
 					echo '<form id="form1" name="form1" enctype="multipart/form-data" method="post" action="?page=post&type=com&post_id='.$sid.'">';
@@ -55,6 +56,7 @@
 				mysqli_select_db($dblink, $dbname);
 				$sql = mysqli_query($dblink, "SELECT * FROM $table ORDER BY `date` DESC");
 				while ($row = mysqli_fetch_array($sql)) {
+					$desc = base64_decode($row['description']);
 					echo '<article class="post" id="'.$row['id'].'">
 						<div class="post-content">
 						<a href="?page=post&type=read&id='.$row['id'].'"><h2 class="post-title">'.$row['title'].'</h2></a>

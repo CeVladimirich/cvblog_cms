@@ -9,10 +9,11 @@
 			$id = $_GET['id'];
 			$sql = mysqli_query($dblink, "SELECT * FROM $table WHERE `id`=$id");
 			while ($row = mysqli_fetch_array($sql)) {
+				$post = base64_decode($row['text']);
 				echo "<article class='post' id='{$row['id']}'>
 					<div class='post-content'>
 					<h2 class='post-title'>{$row['title']}</h2>
-					{$row['text']}
+					{$post}
 					</div>
 				</article>";
 			}

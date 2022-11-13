@@ -18,7 +18,6 @@ $keyid = 'CE'.$key.$_SERVER["REMOTE_ADDR"];
 $keyid = md5($keyid);
 
 if ( ( (is_null($_SESSION['devid'])) || $ep != 1 ) || ($_SESSION['devid'] != $keyid) ) {
-	//echo $_SESSION['devid']." RECV ".$ep." MUST ".$keyid;
 	echo '<meta http-equiv="refresh" content="0;URL=?page=login">';
 
 	exit(0);
@@ -47,7 +46,8 @@ $text = nl2br($text);
 $text = preg_replace("/(^|[\n ])([\w]*?)((ht|f)tp(s)?:\/\/[\w]+[^ \,\"\n\r\t<]*)/is", "$1$2<a href=\"$3\" >$3</a>", $text);
 $desc = nl2br($desc);
 $desc = preg_replace("/(^|[\n ])([\w]*?)((ht|f)tp(s)?:\/\/[\w]+[^ \,\"\n\r\t<]*)/is", "$1$2<a href=\"$3\" >$3</a>", $desc);
-
+$text = base64_encode($text);
+$desc = base64_encode($desc);
 mysqli_query($dblink, "UPDATE $table SET title = '$name', date = '$date', text = '$text', description = '$desc', img = '$img' WHERE id = $sid");
 $error = mysqli_error($dblink);
 //echo $error;
@@ -59,8 +59,9 @@ $name = $_POST['name'];
 $img = $_POST['img'];
 $text = $_POST['text'];
 $desc = $_POST['desc'];
-
 $text = nl2br($text);
+$text = base64_encode($text);
+$desc = base64_encode($desc);
 mysqli_query($dblink, "INSERT INTO $table (title, date, text, description, img) VALUES ('$name', '$date', '$text', '$desc', '$img')");
 $error = mysqli_error($dblink);
 //echo $error;

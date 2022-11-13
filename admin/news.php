@@ -46,6 +46,8 @@ $text = preg_replace("/(^|[\n ])([\w]*?)((ht|f)tp(s)?:\/\/[\w]+[^ \,\"\n\r\t<]*)
 $desc = nl2br($desc);
 $desc = preg_replace("/(^|[\n ])([\w]*?)((ht|f)tp(s)?:\/\/[\w]+[^ \,\"\n\r\t<]*)/is", "$1$2<a href=\"$3\" >$3</a>", $desc);
 
+$text = base64_encode($text);
+$desc = base64_encode($desc);
 mysqli_query($dblink, "UPDATE $table SET title = '$name', date = '$date', text = '$text', url = '$url' WHERE id = $sid");
 $error = mysqli_error($dblink);
 //echo $error;
@@ -58,6 +60,7 @@ $text = $_POST['text'];
 $url = $url.'/?page=news';
 
 $text = nl2br($text);
+$text = base64_encode($text);
 mysqli_query($dblink, "INSERT INTO $table (title, date, text, url) VALUES ('$name', '$date', '$text', '$url')");
 $error = mysqli_error($dblink);
 //echo $error;
