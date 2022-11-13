@@ -44,10 +44,12 @@ $key = "'.$keyid.'";
 ?>';
 //INSTALLING DATABASE
 $dblink = mysqli_connect($host, $login_mysql, $pw_mysql);
+if ($_POST['check_db'] == '0') {
 mysqli_query($dblink, "CREATE DATABASE $name_mysql");
+}
 mysqli_select_db($dblink, $name_mysql);
 mysqli_query($dblink, "CREATE TABLE posts (id int NOT NULL AUTO_INCREMENT, date timestamp, topicid int, postflag int DEFAULT 2, title text, post text, url text, description text, PRIMARY KEY(id))");
-mysqli_query($dblink, "CREATE TABLE topics (id int NOT NULL AUTO_INCREMENT, topic text, position int, PRIMARY KEY (id))");
+mysqli_query($dblink, "CREATE TABLE topics (id int NOT NULL AUTO_INCREMENT, topic text, position int, one_page bool, PRIMARY KEY (id))");
 mysqli_query($dblink, "CREATE TABLE comments (id int NOT NULL AUTO_INCREMENT, date timestamp, post_id int, flag int default 1, author text, text text, PRIMARY KEY(id))");
 mysqli_query($dblink, "INSERT INTO topics (topic, position) VALUES ('статьи', 0), ('заметки', 1), ('новости', 2), ('обо мне', 3)");
 mysqli_query($dblink, "CREATE TABLE admins (id int NOT NULL AUTO_INCREMENT, login text, password text, status int, PRIMARY KEY (id))");
@@ -60,12 +62,13 @@ echo '<meta http-equiv="refresh" content="2;URL=?step=step3">';
 break;
 case step1:
 echo '<b>Установка</b>';
-echo '<form method="post" action="?step=step2">';
+echo '<form method="post" action="?step=step2" name="install">';
 echo '<label><b>База данных MySQL</b></label><br />';
 echo '<label>Логин БД: </label><input type="text" name="login_mysql"><br />';
 echo '<label>Пароль БД: </label><input type="password" name="pw_mysql"><br />';
 echo '<label>Сервер БД (по умолчанию localhost): </label><input type="text" name="host_mysql"><br />';
-echo '<label>Имя новой БД: </label><input type="text" name="name_mysql"><br />';
+echo '<input type="checkbox" value="1" name="check_db"><label>База данных уже создана</label><br />';
+echo '<label>Имя БД: </label><input type="text" name="name_mysql"><br />';
 echo '<label><b>Админка</b></label><br />';
 echo '<label>Ссылка на сайт: </label><input type="text" name="blog_url"><br />';
 echo '<label>Название сайта: </label><input type="text" name="blog_name"><br />';

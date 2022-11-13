@@ -20,12 +20,16 @@ break;
 case read:
 $ot = $_GET['id'];
 $query2 = mysqli_query($dblink, "SELECT * FROM $table WHERE id = $ot");
+$query4 = mysqli_query($dblink, "SELECT * FROM $table1 WHERE id = $oh");
+$sdata = mysqli_fetch_array($query4);
 while($data = mysqli_fetch_array($query2)) {
+if ($sdata['one_page'] == False) {
+$post = base64_decode($data['post']);
 echo '<article class="post" id="'.$data['id'].'">';
 echo '<div class="post-content">';
 echo '<h2 class="post-title">'.$data['title'].'</h2>';
 echo '<em>Дата создания: '.$data['date'].'</em><br>';
-echo $data['post'];
+echo $post;
 echo '</div><hr />';
 echo '<h2>комментарии</h2>';
 echo '<form id="form1" name="form1" enctype="multipart/form-data" method="post" action="?page='.$oh.'&type=com&post_id='.$ot.'">';
@@ -42,18 +46,30 @@ echo '<em>Дата: '.$date.'</em><br>';
 echo '<p>'.$data['text'].'</p><hr>'; 
 echo '</article>';
 }
+} else {
+$post = base64_decode($data['post']);
+echo '<article class="post" id="'.$data['id'].'">';
+echo '<div class="post-content">';
+echo $post;
+echo '</div></article>';
+}
 }
 break;
 default:
 $query = mysqli_query($dblink, "SELECT * FROM $table WHERE topicid = $oh AND postflag = 1 ORDER BY date DESC");
 $query1 = mysqli_query($dblink, "SELECT * FROM $table1 WHERE id = $oh");
 $sdata = mysqli_fetch_array($query1);
+if ($sdata['one_page'] == False) {
 while ($data = mysqli_fetch_array($query)) {
 echo '<article class="post" id="'.$data['id'].'">';
 echo '<div class="post-content">';
 echo '<a href="?page='.$oh.'&type=read&id='.$data['id'].'"><h2>'.$data['title'].'</h2></a>';
 echo '<em>Дата создания: '.$data['date'].'</em>';
 echo '</div></article><hr />';
+}
+} else {
+$data = mysqli_fetch_array($query);
+echo '<meta http-equiv="refresh" content="0;URL=?page='.$oh.'&type=read&id='.$data['id'].'">';
 }
 }
 ?>

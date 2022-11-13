@@ -95,18 +95,24 @@ break;
 case edit:
 $sid = $_GET['id'];
 $name = $_POST['name'];
-mysqli_query($dblink, "UPDATE topics SET topic = '$name' WHERE id = $sid");
+$tp = $_POST['type_page'];
+mysqli_query($dblink, "UPDATE topics SET topic = '$name', one_page = $tp WHERE id = $sid");
 echo '<meta http-equiv="refresh" content="0;URL=?page=settings&mode=topics">';
 break;
 case add:
 $name = $_POST['name'];
 $last = mysqli_query($dblink, "SELECT * FROM topics ORDER BY position DESC");
 $sdata = mysqli_fetch_array($last);
+$tp = $_POST['type_page'];
 $spos = intval($sdata['position'])+1;
-mysqli_query($dblink, "INSERT INTO topics (topic, position) VALUES ('$name', $spos)");
+mysqli_query($dblink, "INSERT INTO topics (topic, position, one_page) VALUES ('$name', $spos, $tp)");
 $error = mysqli_error($dblink);
 //echo $error;
+if ($tp == "False") {
 echo '<meta http-equiv="refresh" content="0;URL=?page=settings&mode=topics">';
+} else {
+echo '<meta http-equiv="refresh" content="0;URL=?page=post&mode=addform">';
+}
 break;
 case addtopic:
 if ($_GET['type'] == 'edit') {
@@ -118,6 +124,11 @@ echo '<center><table><form id="form1" name="form1" enctype="multipart/form-data"
 } else {
 echo '<center><table><form id="form1" name="form1" enctype="multipart/form-data" method="post" action="?page=settings&mode=add">';
 }
+echo '<tr><td align="center">Тип раздела</td><td><select name="type_page">';
+echo '<option value="True">Одностраничный</option>';
+echo '<option value="False">Многостраничный</option>';
+echo '</select></td></tr>';
+echo '<tr><td colspan="2">После создания одностраничного раздела вы будете переброшены на страницу с созданием поста. Выберите названный раздел и начните писать.</td></tr>';
 echo '<tr><td align="center">Название: </td><td><input type="text" name="name" size="30" value="'.$sname.'"></td></tr>';
 echo '<tr><td align="center" colspan="2"><input type="submit" value="Добавить"></form></td></tr></table></center>';
 break;
