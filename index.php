@@ -1,3 +1,21 @@
+<?php
+/**
+ * CeVladimirich's Blog CMS
+ * @copyright Vladimir Volkov, 2022.
+ * @version 2.0
+ * @author CeVladimirich
+ **/
+
+//bootstrap
+include 'admin/config.php';
+session_start();
+$edblink = mysqli_connect($server, $user, $password); 
+mysqli_select_db($edblink, $dbname);
+mysqli_query($edblink, "SET NAMES 'utf8'");
+$squery = mysqli_query($edblink, "SELECT * FROM config WHERE id = 1");
+$sdata = mysqli_fetch_array($squery);
+$_SESSION['indx_tpc'] = $sdata['index_tpc'];
+?>
 <!DOCTYPE html>
 <html>
 	<head>

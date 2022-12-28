@@ -28,6 +28,7 @@ $post = base64_decode($data['post']);
 echo '<article class="post" id="'.$data['id'].'">';
 echo '<div class="post-content">';
 echo '<h2 class="post-title">'.$data['title'].'</h2>';
+echo '<em>Автор: '.$data['author'].'</em><br>';
 echo '<em>Дата создания: '.$data['date'].'</em><br>';
 echo $post;
 echo '</div><hr />';

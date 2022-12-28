@@ -1,9 +1,10 @@
 <?php
 include '/admin/config.php';
 $table = 'posts';
+$tpc = $_SESSION['indx_tpc']
 $dblink = mysqli_connect($server, $user, $password);
 mysqli_select_db($dblink, $dbname);
-$query = mysqli_query($dblink, "SELECT * FROM $table WHERE topicid = 1 AND postflag = 1 ORDER BY date DESC");
+$query = mysqli_query($dblink, "SELECT * FROM $table WHERE topicid = $tpc AND postflag = 1 ORDER BY date DESC");
 while($data = mysqli_fetch_array($query)) {
 $desc = base64_decode($data['description']);
 echo '<article class="post" id="'.$data['id'].'">';

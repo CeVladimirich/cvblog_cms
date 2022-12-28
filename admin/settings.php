@@ -145,9 +145,17 @@ mysqli_query($dblink, "DELETE FROM topics WHERE id = $sid");
 mysqli_query($dblink, "UPDATE topics SET position = position - 1 WHERE position > $spos");
 echo '<meta http-equiv="refresh" content="0;URL=?page=settings&mode=topics">';
 break;
+case setumolch:
+$sid = $_GET['id'];
+mysqli_query($dblink, "UPDATE config SET index_tpc = $sid");
+echo '<meta http-equiv="refresh" content="0;URL=?page=settings&mode=topics">';
+break;
 case topics:
+$query1 = mysqli_query($dblink, "SELECT * FROM config WHERE id = 1");
+$sdata = mysqli_fetch_array($query1);
 echo '<a href="?page=settings&mode=addtopic"><b>СОЗДАТЬ ТОПИК</b></a>';
 echo '<center><table border="0">';
+echo '<tr><td colspan="4">Текущий топик на главной: '.$sdata['index_tpc'].'</td></tr>';
 echo '<tr><td colspan="2">ID/Поз.</td><td>Название</td><td>Действия</td></tr>';
 $query = mysqli_query($dblink, "SELECT * FROM topics ORDER BY position ASC");
 while($data = mysqli_fetch_array($query)) {
@@ -157,6 +165,9 @@ echo '<a href="?page=settings&mode=pos&pos='.(intval($data['position'])-1).'&id=
 }
 if(intval($data['position']) < mysqli_num_rows($query)) {
 echo '<a href="?page=settings&mode=pos&pos='.(intval($data['position'])+1).'&id='.$data['id'].'">ВПРАВО</a><br>';
+}
+if($sdata['index_tpc'] != $data['id']) {
+echo '<a href="?page=settings&mode=setumolch&id='.$data['id'].'">УСТАНОВИТЬ ПО УМОЛЧАНИЮ</a><br>'
 }
 echo '<a href="?page=settings&mode=del&id='.$data['id'].'">УДАЛИТЬ</a></td></tr>';
 }
