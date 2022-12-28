@@ -163,6 +163,6 @@ echo '<a href="?page=settings&mode=del&id='.$data['id'].'">УДАЛИТЬ</a></t
 echo '</table></center>';
 break;
 default:
-echo '<center><b><a href="?page=settings&mode=topics">НАСТРОЙКИ РАЗДЕЛОВ</a> | <b><a href="?page=settings&mode=users">ПОЛЬЗОВАТЕЛИ</a></b> | <a href="index.php">НА ГЛАВНУЮ</a></b></center>';
+echo '<center><b><a href="?page=settings&mode=topics">НАСТРОЙКИ РАЗДЕЛОВ</a> | <a href="?page=settings&mode=users">ПОЛЬЗОВАТЕЛИ</a> | <a href="index.php">НА ГЛАВНУЮ</a></b></center>';
 }
 ?>
