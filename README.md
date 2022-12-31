@@ -29,6 +29,10 @@ Main ветка:
 После установки вы копируете config.php в корневой каталог и в admin, а скрипт удаляете.
 # Важно
 Проект в качестве CMS очень сырой и кривой и требует дорабодок и багфиксов. Поэтому с багами и с предложениями обращайтесь в Issues проекта! Спасибо!
+# Скриншоты
+!()[http://cms.cevladimirich.ru/photo3.jpg]
+!()[http://cms.cevladimirich.ru/photo2.jpg]
+!()[http://cms.cevladimirich.ru/photo1.jpg]
 # Контакты автора
 Канал с релизами в Telegram: https://t.me/ceblog_cms
 
