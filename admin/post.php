@@ -77,6 +77,7 @@ $desc = nl2br($desc);
 echo '<article class="post" id="">';
 echo '<div class="post-content">';
 echo '<em>Убедитесь, что всё выглядит именно так, как вы планировали, и нажмите снизу кнопку "Добавить"</em><br />';
+echo '<em>Обязательно опубликуйте пост после проверки из страницы топика!</em><br />';
 echo '<h2 class="post-title">'.$name.'</h2>';
 echo '<em>Автор: '>$_SESSION['login'].'</em><br>';
 echo '<em>Дата создания: '.$date.'</em><br>';
