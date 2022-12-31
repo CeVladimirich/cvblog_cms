@@ -167,7 +167,7 @@ if(intval($data['position']) < mysqli_num_rows($query)) {
 echo '<a href="?page=settings&mode=pos&pos='.(intval($data['position'])+1).'&id='.$data['id'].'">ВПРАВО</a><br>';
 }
 if($sdata['index_tpc'] != $data['id']) {
-echo '<a href="?page=settings&mode=setumolch&id='.$data['id'].'">УСТАНОВИТЬ ПО УМОЛЧАНИЮ</a><br>'
+echo '<a href="?page=settings&mode=setumolch&id='.$data['id'].'">УСТАНОВИТЬ ПО УМОЛЧАНИЮ</a><br>';
 }
 echo '<a href="?page=settings&mode=del&id='.$data['id'].'">УДАЛИТЬ</a></td></tr>';
 }
