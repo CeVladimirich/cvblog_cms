@@ -25,11 +25,12 @@ $sdata = mysqli_fetch_array($query4);
 while($data = mysqli_fetch_array($query2)) {
 if ($sdata['one_page'] == False) {
 $post = base64_decode($data['post']);
+$date = date("d.m.Y", strtotime($data['date']));
 echo '<article class="post" id="'.$data['id'].'">';
 echo '<div class="post-content">';
 echo '<h2 class="post-title">'.$data['title'].'</h2>';
-echo '<em>Автор: '.$data['author'].'</em><br>';
-echo '<em>Дата создания: '.$data['date'].'</em><br>';
+echo '<b><em>Автор: '.$data['author'].'</em></b><br>';
+echo '<em>Дата создания: '.$date.'</em><br>';
 echo $post;
 echo '</div><hr />';
 echo '<h2>комментарии</h2>';
