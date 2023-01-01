@@ -70,4 +70,3 @@ include 'inx.php';
 	});
 	</script>
 </html>
-
