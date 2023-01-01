@@ -31,6 +31,52 @@ mysqli_select_db($dblink, $dbname);
 mysqli_query($dblink, "SET NAMES 'utf8'");
 $tr = $_GET['mode'];
 switch($tr) {
+	case edit:
+		$stp = $_GET['step'];
+		$sid = $_GET['id'];
+		switch($stp) {
+			case 2:
+				$login = $_POST['login'];
+				mysqli_query($dblink, "UPDATE admins SET login = '$login' WHERE id = $sid");
+				$key = 'CE'.$key.$_SERVER["REMOTE_ADDR"];
+				$key1 = md5($key);
+
+				$_SESSION['devid'] = $key1;
+				$_SESSION['login'] = $login;
+				echo '<meta http-equiv="refresh" content="1;URL=?page=settings&mode=users">';
+				break;
+			default:
+			$squery = mysqli_query($dblink, "SELECT * FROM admins WHERE id = $sid");
+			$sdata = mysqli_fetch_array($squery);
+			echo '<form method="post" action="?page=settings&mode=edit&step=2&id='.$sid.'">
+			<label>Логин: </label><input type="text" name="login" size="30" value="'.$sdata['login'].'"><br>
+			<input type="submit" value="Продолжить">
+			</form>';
+		}
+		break;
+	case adduser:
+		$stp = $_GET['step'];
+		switch($stp) {
+			case 2:
+				if ($_POST['passwd'] == $_POST['passwd_re']) {
+					$login = $_POST['login'];
+					$passwd = md5($_POST['passwd']);
+					$status = 1;
+					mysqli_query($dblink, "INSERT INTO admins (login, password, status) VALUES ('$login', '$passwd', $status)");
+					echo '<meta http-equiv="refresh" content="1;URL=?page=settings&mode=users">';
+				} else {
+					echo 'ПАРОЛИ ВВЕДЕНЫ НЕПРАВИЛЬНО! Попробуйте еще раз...';
+				}
+				break;
+			default:
+			echo '<form method="post" action="?page=settings&mode=adduser&step=2">
+			<label>Логин: </label><input type="text" size="30" name="login"><br>
+			<label>Пароль: </label><input type="password" size="30" name="passwd"><br>
+			<label>Повторите пароль: </label><input type="password" size="30" name="passwd_re"><br>
+			<input type="submit" value="Продолжить">
+			</form>';
+		}
+		break;
 	case stts:
 		$sid = $_GET['id'];
 		$stts = $_GET['stts'];
@@ -46,10 +92,10 @@ switch($tr) {
 			echo '<tr><td>'.$data['login'].'</td><td>'.$data['status'].'</td><td>';
 			echo '<a href="?page=settings&mode=setpasswdfrm&id='.$data['id'].'">ИЗМЕНИТЬ ПАРОЛЬ</a><br>';
 			if ($_SESSION['login'] != $data['login']) {
-				if ($data['stts'] == '1') {
+				if ($data['status'] == '1') {
 					echo '<a href="?page=settings&mode=stts&stts=0&id=' . $data['id'] . '">ИЗМЕНИТЬ СТАТУС</a><br>';
 				}
-				if ($data['stts'] == '0') {
+				if ($data['status'] == '0') {
 					echo '<a href="?page=settings&mode=stts&stts=1&id=' . $data['id'] . '">ИЗМЕНИТЬ СТАТУС</a><br>';
 				}
 			}
