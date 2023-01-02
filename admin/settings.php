@@ -31,7 +31,7 @@ mysqli_select_db($dblink, $dbname);
 mysqli_query($dblink, "SET NAMES 'utf8'");
 $tr = $_GET['mode'];
 switch($tr) {
-	case edit:
+	case edit_usr:
 		$stp = $_GET['step'];
 		$sid = $_GET['id'];
 		switch($stp) {
@@ -99,7 +99,7 @@ switch($tr) {
 					echo '<a href="?page=settings&mode=stts&stts=1&id=' . $data['id'] . '">ИЗМЕНИТЬ СТАТУС</a><br>';
 				}
 			}
-			echo '<a href="?page=settings&mode=edit&id='.$data['id'].'">ИЗМЕНИТЬ</a><br>';
+			echo '<a href="?page=settings&mode=edit_usr&id='.$data['id'].'">ИЗМЕНИТЬ</a><br>';
 			echo '<hr></td></tr>';
 		}
 		echo '</table></center>';

@@ -17,9 +17,24 @@ class db_query {
         $query = mysqli_query($dblink, "SELECT * FROM topics");
         return $query;
     }
-    // Return posts
-    function posts_query($dblink, $topic) {
-        $query = mysqli_query($dblink, "SELECT * FROM posts WHERE topicid = $topic");
+    // Return topics on page
+    function topic_query_pages($dblink, $id) {
+        $query = mysqli_query($dblink, "SELECT * FROM topics WHERE id = $id");
+        return $query;
+    }
+    // Return post
+    function post_query($dblink, $id) {
+        $query = mysqli_query($dblink, "SELECT * FROM posts WHERE id = $id");
+        return $query;
+    }
+    // Return posts on page
+    function posts_query_list($dblink, $topic, $pf, $id, $des) {
+        $query = mysqli_query($dblink, "SELECT * FROM posts WHERE topicid = $topic AND postflag = $pf ORDER BY $id $des");
+        return $query;
+    }
+    // Return posts on index
+    function posts_query_index($dblink, $topic, $id, $des) {
+        $query = mysqli_query($dblink, "SELECT * FROM posts WHERE topicid = $topic ORDER BY $id $des");
         return $query;
     }
     // Return admins

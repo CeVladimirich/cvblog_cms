@@ -1,11 +1,9 @@
 <?php
 include 'admin/config.php';
-include 'libs/db_query.php';
-include 'libs/db_show.php';
 $db = new db_query();
-$topic = $_SESSION['index_tpc'];
+$topic = $_SESSION['indx_tpc'];
 $dblink = $db->start($server, $user, $password, $dbname);
-$query = $db->posts_query($dblink, 1);
+$query = $db->posts_query_index($dblink, $topic, "id", "DESC");
 $show = new db_show();
 return $show->show_posts_desc($query);
 ?>

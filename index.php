@@ -7,12 +7,14 @@
  **/
 
 //bootstrap
-include 'admin/config.php';
+
 session_start();
-$edblink = mysqli_connect($server, $user, $password); 
-mysqli_select_db($edblink, $dbname);
-mysqli_query($edblink, "SET NAMES 'utf8'");
-$squery = mysqli_query($edblink, "SELECT * FROM config");
+include 'admin/config.php';
+include_once 'libs/db_query.php';
+include_once 'libs/db_show.php';
+$db = new db_query();
+$dblink = $db->start($server, $user, $password, $dbname);
+$squery = $db->config_query($dblink);
 $sdata = mysqli_fetch_array($squery);
 $_SESSION['indx_tpc'] = $sdata['index_tpc'];
 ?>
@@ -32,14 +34,10 @@ $_SESSION['indx_tpc'] = $sdata['index_tpc'];
 				<div class="nav-toggle"><span></span></div>
 				<ul id="menu">
 				<?php
-				include "admin/config.php";
-				$table = 'topics';
-				$dblink = mysqli_connect($server, $user, $password);
-				mysqli_select_db($dblink, $dbname);
-				$query = mysqli_query($dblink, "SELECT * FROM topics");
-				while($data = mysqli_fetch_array($query)) {
-					echo '<li><a href="?page='.$data['id'].'">'.$data['topic'].'</a></li> ';
-				}
+				$db = new db_query();
+				$query = $db -> topic_query($dblink);
+				$show = new db_show();
+				echo $show->show_topics($query);
 				?>
 				</ul>
 			</nav>
@@ -57,12 +55,10 @@ include 'inx.php';
 						?>
 						</div>
 			</div>
-		<footer>
-			<div class="container">
-				<div class="footer-col"><span>Powered on Cevladimirich's Blog CMS<br>By CeVladimirich, 2022</span></div>
-				<div class="footer-col" align="right"><span><a href="mailto:<?php include "admin/config.php"; echo $email;?>">написать письмо</a></span></div>
-			</div>
-		</footer>
+		<?php
+		$show = new db_show();
+		echo $show->show_footer();
+		?>
 	</body>
 	<script>
 	$('.nav-toggle').on('click', function(){
