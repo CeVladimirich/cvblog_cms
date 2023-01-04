@@ -28,6 +28,14 @@ $_SESSION['indx_tpc'] = $sdata['index_tpc'];
 		<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
 	</head>
 	<body>
+	<?php
+			if ($_SESSION['login'] != '') {
+				$show = new db_show();
+				echo $show->show_admin();
+			} else {
+				echo '';
+			}
+			?>
 		<header>
 			<nav class="container">
 				<a href="<?php include "admin/config.php"; echo $url; ?>" id="logo"><p><?php include "admin/config.php"; echo $name; ?></p></a>
