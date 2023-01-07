@@ -1,9 +1,9 @@
 <div class="container">
 <?php
-echo '<h1 class="p-2">Здравствуйте, '.$_SESSION['login'].'!</h1>';
+echo '<h1 class="p-2 m-3">Здравствуйте, '.$_SESSION['login'].'!</h1>';
 ?>
 <h2 class="h6 p-2">Вот последение изменения на вашем сайте:</h2>
-<a class="btn btn-outline-success" role="button" href="?page=articles&mode=addpost">Добавить пост</a>
+<a class="btn btn-outline-success" role="button" href="?page=articles&mode=addpost"><i class="bi bi-plus"></i>Добавить пост</a>
 <div class="row p-2">
     <div class="col p-2 m-1 shadow">
         <h4>Последние комментарии:</h4>
@@ -35,6 +35,7 @@ echo '<h1 class="p-2">Здравствуйте, '.$_SESSION['login'].'!</h1>';
                 $sdata = mysqli_fetch_array($squery);
                 $date = date("d.m.Y", strtotime($data['date']));
                 $desc = base64_decode($data['description']);
+                $desc = strip_tags($desc, '<a><em><b><u>');
                 echo '<h5><a href="'.$url.'/?page='.$data['topicid'].'&type=read&id='.$data['id'].'">'.$data['title'].'</a></h5>';
                 echo '<em>Топик: <a href="?page=articles&topic='.$sdata['id'].'">'.$sdata['topic'].'</a>. 
                 Дата создания: '.$date.', автор: '.$data['author'].'</em>';

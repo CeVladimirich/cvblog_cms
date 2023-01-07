@@ -32,6 +32,11 @@ header {
 	max-width: 960px;
 	padding: 0 15px;
 }
+.admin {
+	width: 100%;
+	padding: 3px;
+	margin: 0;
+}
 .row:after {
   visibility: hidden;
   display: block;

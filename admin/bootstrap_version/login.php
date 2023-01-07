@@ -61,6 +61,7 @@ switch($mode) {
             <body class="text-center">
                 <main class="form-signin">
                     <form method="post" action="?mode=login">
+                        <img src="./../../css/ceblog_logo.png" width="80" height="80" alt="">
                         <h1 class="h3 mb-3 fw-normal">Вход в админ-панель</h1>
                         <div class="form-floating">
                             <input id="floatingInput" type="text" name="login" class="form-control">
