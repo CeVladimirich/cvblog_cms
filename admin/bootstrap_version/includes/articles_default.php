@@ -28,7 +28,7 @@ $tpc = $_GET['topic'];
         <div class="col">
             <a href="?page=articles&mode=addpost&type=edit&id='.$data['id'].'" role="button" class="btn m-1 btn-outline-primary"><i class="bi bi-pencil-square"></i>Изменить</a><br>
             <a href="?page=articles&mode=setpf&pf=1&id='.$data['id'].'&from_tpc='.$tpc.'" role="button" class="btn m-1 btn-outline-success">Опубликовать</a><br>
-            <a href="?page=articles&mode=setpf&pf=0&id='.$data['id'].'&from_tpc='.$tpc.'" role="button" class="btn m-1 btn-outline-danger">Удалить</a>
+            <a href="?page=articles&mode=setpf&pf=0&id='.$data['id'].'&from_tpc='.$tpc.'" role="button" class="btn m-1 btn-outline-danger"><i class="bi bi-eye-slash"></i> Скрыть</a>
         </div>
         </div><hr>';
     }
@@ -43,7 +43,7 @@ $tpc = $_GET['topic'];
         <div class="col-6">'.$desc.'</div>
         <div class="col">
             <a href="?page=articles&mode=addpost&type=edit&id='.$data['id'].'" role="button" class="btn m-1 btn-outline-primary"><i class="bi bi-pencil-square"></i> Изменить</a><br>
-            <a href="?page=articles&mode=setpf&pf=0&id='.$data['id'].'&from_tpc='.$tpc.'" role="button" class="btn m-1 btn-outline-danger">Удалить</a>
+            <a href="?page=articles&mode=setpf&pf=0&id='.$data['id'].'&from_tpc='.$tpc.'" role="button" class="btn m-1 btn-outline-danger"><i class="bi bi-eye-slash"></i> Скрыть</a>
         </div>
         </div><hr>';
     }
@@ -59,7 +59,7 @@ $tpc = $_GET['topic'];
         <div class="col">
             <a href="?page=articles&mode=addpost&type=edit&id='.$data['id'].'" role="button" class="btn m-1 btn-outline-primary"><i class="bi bi-pencil-square"></i> Изменить</a><br>
             <a href="?page=articles&mode=setpf&pf=1&id='.$data['id'].'&from_tpc='.$tpc.'" role="button" class="btn m-1 btn-outline-success">Восстановить</a><br>
-            <a href="#" role="button" class="btn m-1 btn-outline-danger">Удалить</a>
+            <a href="?page=articles&mode=del&id='.$data['id'].'" role="button" class="btn m-1 btn-outline-danger"><i class="bi bi-trash"></i>Удалить</a>
         </div>
         </div><hr>';
     }

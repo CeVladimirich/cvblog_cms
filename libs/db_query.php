@@ -64,12 +64,12 @@ class db_query {
     }
     // Return comments (for posts)
     function comments_post_query($dblink, $postid, $id, $des) {
-        $query = mysqli_query($dblink, "SELECT * FROM comments WHERE post_id = $postid ORDER BY $id $des");
+        $query = mysqli_query($dblink, "SELECT * FROM comments WHERE post_id = $postid AND flag = 1 ORDER BY $id $des");
         return $query;
     }
     // Return comments (for admin)
-    function comments_admin_query($dblink, $id, $des, $limit) {
-        $query = mysqli_query($dblink, "SELECT * FROM comments ORDER BY $id $des LIMIT $limit");
+    function comments_admin_query($dblink, $id, $des, $limit, $flag) {
+        $query = mysqli_query($dblink, "SELECT * FROM comments WHERE flag = $flag ORDER BY $id $des LIMIT $limit");
         return $query;
     }
     // Return config

@@ -6,6 +6,14 @@ $dblink = $db->start($server, $user, $password, $dbname);
 $mode = $_GET['mode'];
 $stype = $_GET['type'];
 switch($mode) {
+    case 'del':
+        $sid = $_GET['id'];
+        $squery1 = $db->post_query($dblink, $sid);
+        $sdata = mysqli_fetch_array($squery1);
+        $tpc = $sdata['topicid'];
+        mysqli_query($dblink, "DELETE FROM posts WHERE id = $sid");
+        echo '<meta http-equiv="refresh" content="0;URL=?page=articles&topic='.$tpc.'">';
+        break;
     case 'edit':
         $sid = $_GET['id'];
         $name = $_POST['namePost'];
