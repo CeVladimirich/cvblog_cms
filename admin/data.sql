@@ -4,7 +4,7 @@
 --
 CREATE TABLE posts (
     id int NOT NULL AUTO_INCREMENT,
-    date timestamp,
+    date datetime,
     topicid int,
     postflag int DEFAULT 2,
     title text,
@@ -27,7 +27,7 @@ CREATE TABLE topics (
 );
 CREATE TABLE comments (
     id int NOT NULL AUTO_INCREMENT,
-    date timestamp,
+    date datetime,
     post_id int,
     flag int default 1,
     author text,
