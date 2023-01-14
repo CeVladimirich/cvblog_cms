@@ -21,8 +21,9 @@ CREATE TABLE config (
 );
 CREATE TABLE topics (
     id int NOT NULL AUTO_INCREMENT,
-    topic text, position int,
-    one_page bool,
+    topic text, 
+    position int,
+    one_page int,
     PRIMARY KEY (id)
 );
 CREATE TABLE comments (

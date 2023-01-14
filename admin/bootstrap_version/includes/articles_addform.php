@@ -136,4 +136,3 @@ function showPreview() {
 }
 
 </script>
-<script src="article.js"></script>

@@ -1,3 +1,6 @@
+// turn tooltips
+const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
+const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl));
 function insertTextAtCursor(el, text, offset) {
     var val = el.value, endIndex, range, doc = el.ownerDocument;
     if (typeof el.selectionStart == "number"

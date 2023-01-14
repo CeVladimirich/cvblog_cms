@@ -17,6 +17,10 @@ class db_query {
         $query = mysqli_query($dblink, "SELECT * FROM topics");
         return $query;
     }
+    function topic_query_desc($dblink, $pos, $desc) {
+        $query = mysqli_query($dblink, "SELECT * FROM topics ORDER BY $pos $desc");
+        return $query;
+    }
     // Return topics on page
     function topic_query_pages($dblink, $id) {
         $query = mysqli_query($dblink, "SELECT * FROM topics WHERE id = $id");

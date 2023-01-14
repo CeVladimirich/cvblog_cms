@@ -70,6 +70,7 @@ class db_show {
     // Show comments
     function show_comments($query) {
         while($data = mysqli_fetch_array($query)) {
+            $text = strip_tags($data['text'], '<br>');
             $date = $data['date'];
             $date = date("d.m.Y", strtotime($date));
             echo '<b>'.$data['author'].'</b><br>';

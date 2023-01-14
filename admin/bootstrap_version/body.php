@@ -5,7 +5,7 @@ echo '<h1 class="p-2 m-3">Здравствуйте, '.$_SESSION['login'].'!</h1>
 <h2 class="h6 p-2">Вот последение изменения на вашем сайте:</h2>
 <a class="btn btn-outline-success" role="button" href="?page=articles&mode=addpost"><i class="bi bi-plus"></i>Добавить пост</a>
 <div class="row p-2">
-    <div class="col p-2 m-1 shadow">
+    <div class="col-lg p-2 m-1 shadow">
         <h4>Последние комментарии:</h4>
         <?php
             include '../config.php';
@@ -24,7 +24,7 @@ echo '<h1 class="p-2 m-3">Здравствуйте, '.$_SESSION['login'].'!</h1>
             }
             ?>
     </div>
-    <div class="col p-2 m-1 shadow">
+    <div class="col-lg p-2 m-1 shadow">
         <h4>Последние посты:</h4>
         <?php
             include '../config.php';

@@ -33,12 +33,13 @@ include_once('comments.php')
             $dblink = $db->start($server, $user, $password, $dbname);
             $query = $db->comments_admin_query($dblink, 'id', 'DESC', 10, 0);
             while($data = mysqli_fetch_array($query)) {
+                $text = strip_tags($data['text'], '<br>');
                 $squery = $db->post_query($dblink, $data['post_id']);
                 $sdata = mysqli_fetch_array($squery);
                 $date = date("d.m.Y", strtotime($data['date']));
                 echo '<h5>'.$data['author'].'</h5>';
                 echo '<em>К посту: '.$sdata['title'].'. Дата написания: '.$date.'</em>';
-                echo '<p>'.$data['text'].'</p><br>
+                echo '<p>'.$text.'</p><br>
                 <a href="?page=comments&mode=setflag&flag=1&id='.$data['id'].'" role="button" class="btn m-1 btn-outline-success">Восстановить</a><a href="?page=comments&mode=del&id='.$data['id'].'" role="button" class="btn m-1 btn-outline-danger"><i class="bi bi-trash"></i>Удалить</a><hr>';
             }
             ?>
