@@ -61,6 +61,11 @@ class db_query {
         $query = mysqli_query($dblink, "SELECT * FROM admins WHERE login = '$user'");
         return $query;
     }
+    // Return admin id (for adminpanel)
+    function admin_id_query($dblink, $id) {
+        $query = mysqli_query($dblink, "SELECT * FROM admins WHERE id = $id");
+        return $query;
+    }
     // Return comments
     function comments_query($dblink, $id, $des) {
         $query = mysqli_query($dblink, "SELECT * FROM comments ORDER BY $id $des");

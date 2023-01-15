@@ -5,6 +5,27 @@ $db = new db_query();
 $dblink = $db->start($server, $user, $password, $dbname);
 $mode = $_GET['mode'];
 switch($mode) {
+    case 'editpasswd':
+        $sid = $_GET['id'];
+        $squery = $db->admin_id_query($dblink, $sid);
+        $sdata = mysqli_fetch_array($squery);
+        $usepasswd = md5($_POST['usepasswd']);
+        $passwd = md5($_POST['passwd']);
+        $passwd_re = md5($_POST['passwd_re']);
+        if($usepasswd == $sdata['password']) {
+            if ($passwd == $passwd_re) {
+                mysqli_query($dblink, "UPDATE admins SET password = '$passwd' WHERE id = $sid");
+                echo '<meta http-equiv="refresh" content="0;URL=?page=settings#accounts">';
+            } else {
+                echo 'Пароли не совпадают! Попробуйте еще раз...';
+                echo '<meta http-requiv="refresh" content="3;?page=settings&mode=editpasswdform&id='.$sid.'">';
+            }
+        } else {
+            echo 'Неверный пароль! Попробуйте еще раз...';
+            echo '<meta http-requiv="refresh" content="3;?page=settings&mode=editpasswdform&id='.$sid.'">';
+        }
+        echo '<meta http-equiv="refresh" content="0;URL=?page=settings#accounts">';
+        break;
     case 'setindx':
         $sid = $_GET['id'];
         mysqli_query($dblink, "UPDATE config SET index_tpc = $sid");
@@ -23,6 +44,12 @@ switch($mode) {
     case 'edit':
         $type = $_GET['type'];
         switch($type) {
+            case 'user':
+                $user = $_POST['login'];
+                $sid = $_GET['id'];
+                mysqli_query($dblink, "UPDATE admins SET login = '$user' WHERE id = $sid");
+                echo '<meta http-equiv="refresh" content="0;URL=?page=settings#accounts">';
+                break;
             case 'topic':
                 $sid = $_GET['id'];
                 $topicname = $_POST['namePost'];
@@ -37,6 +64,11 @@ switch($mode) {
     case 'del':
         $type = $_GET['type'];
         switch($type) {
+            case 'user':
+                $sid = $_GET['id'];
+                mysqli_query($dblink, "DELETE FROM topics WHERE id = $sid");
+                echo '<meta http-equiv="refresh" content="0;URL=?page=settings#accounts">';
+                break;
             case 'topic':
                 $sid = $_GET['id'];
                 // get position
@@ -68,6 +100,19 @@ switch($mode) {
     case 'add':
         $type = $_GET['type'];
         switch($type) {
+            case 'user':
+                $login = htmlspecialchars($_POST['login']);
+                $passwd = md5($_POST['passwd']);
+                $passwd_re = md5($_POST['passwd_re']);
+                // checking passwords for the same
+                if ($passwd == $passwd_re) {
+                    mysqli_query($dblink, "INSERT INTO admins (login, password, status) VALUES ('$login', '$passwd', 1)");
+                    echo '<meta http-requiv="refresh" content="0;?page=settings">';
+                } else {
+                    echo "Пароли не одиноваковы! Попробуйте еще раз...";
+                    echo '<meta http-requiv="refresh" content="3;?page=settings&mode=adduser">';
+                }
+                break;
             case 'topic':
                 $topicname = $_POST['namePost'];
                 $op = $_POST['onepage'];
@@ -95,8 +140,14 @@ switch($mode) {
             include_once('404.php');
         }
         break;
+    case 'editpasswdform':
+        include_once('./includes/settings/settings_editpasswd.php');
+        break;
+    case 'adduser':
+        include_once('./includes/settings/settings_adduser.php');
+        break;
     case 'addtopic':
-        include_once('./includes/settings/settings_addform.php');
+        include_once('./includes/settings/settings_addtopic.php');
         break;
     default:
         include './includes/settings/settings_page.php';

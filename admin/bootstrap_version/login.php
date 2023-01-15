@@ -38,11 +38,10 @@ switch($mode) {
         
             echo '<meta http-equiv="refresh" content="0;URL=login.php">';
             exit(0);
-            } else {
-                echo 'логин и пароль неправильные! попробуйте еще раз...';
-                echo '<meta http-equiv="refresh" content="4;URL=login.php">';
             }
         }
+        echo 'логин и пароль неправильные! попробуйте еще раз...';
+        echo '<meta http-equiv="refresh" content="4;URL=login.php">';
         break;
     case logout:
             unset($_SESSION['devid']);

@@ -24,7 +24,7 @@ while($data = mysqli_fetch_array($query)) {
 }
 ?>
 <li><hr class="dropdown-divider"></li>
-<li><a href="#" class="dropdown-item">Изменить</a></li>
+<li><a href="?page=settings#topics" class="dropdown-item">Изменить</a></li>
 </ul>
 </li>
 <li class="nav-item">

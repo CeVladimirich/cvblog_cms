@@ -1,13 +1,12 @@
 <?php
 // initialization
-
 include_once('settings.php');
 if($_GET['type'] == 'edit') {
     $sid = $_GET['id'];
-    $squery = $db->topic_query($dblink);
+    $squery = $db->topic_query_pages($dblink, $sid);
     $sdata = mysqli_fetch_array($squery);
-    $title = $sdata['topic'];
-    $form_header = '<form method="post" action="?page=settings&mode=edit&type=topic&id='.$sid.'">';
+    $titletpc = $sdata['topic'];
+    $form_header = '<form method="post" action="?page=settings&mode=edit&type=topic&id='.$id.'">';
 } else {
     $form_header = '<form method="post" action="?page=settings&mode=add&type=topic">';
 }
@@ -20,7 +19,7 @@ if($_GET['type'] == 'edit') {
         <div class="col-lg">
                 <div class="mb-3">
                     <label for="namePost">Название топика</label>
-                    <input type="text" required class="form-control" id="namePost" value="<?php echo $title; ?>" name="namePost">
+                    <input type="text" required class="form-control" id="namePost" value="<?php echo $titletpc; ?>" name="namePost">
                 </div>
                 Тип раздела: <i data-bs-toggle="tooltip" data-bs-title="После добавления раздела (при выборе одностраничного) вы будете переброшены на страницу создания постов. Выберите только что созданый топик." class="bi bi-question-circle"></i>
                 <div class="form-check">

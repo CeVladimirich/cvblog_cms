@@ -3,11 +3,7 @@
 include_once('settings.php');
 ?>
 <style>
-    a#site {
-        color: #000;
-        text-decoration: none;
-    }
-    a#topics {
+    a.black {
         color: #000;
         text-decoration: none;
     }
@@ -29,9 +25,9 @@ include_once('settings.php');
         </ul>
         </div>
         <div class="container flex-fill">
-            <h3><a id="site">Сайт</a></h3>
+            <h3><a class="black" id="site">Сайт</a></h3>
             <em>Скоро в новой версии...</em>
-            <h3><a href="#" id="topics">Категории (Топики)</a></h3>
+            <h3><a class="black" id="topics">Категории (Топики)</a></h3>
             <a class="btn btn-outline-success m-2" role="button" href="?page=settings&mode=addtopic"><i class="bi bi-plus"></i>Добавить топик</a>
             <div class="container shadow text-center">
                 <div class="row m-2 border-bottom">
@@ -59,6 +55,31 @@ include_once('settings.php');
                         }
                         if($data['id'] != $sdata['index_tpc']) {
                             echo '<a href="?page=settings&mode=setindx&id='.$data['id'].'" role="button" class="btn m-1 btn-outline-primary"><i class="bi bi-check"></i> Установить на главную</a>';
+                        }
+                    echo '</div>
+                    </div>';
+                }
+                ?>
+            </div>
+            <h3><a class="black" id="accounts">Аккаунты</a></h3>
+            <a class="btn btn-outline-success m-2" role="button" href="?page=settings&mode=adduser"><i class="bi bi-plus"></i>Добавить пользователя</a>
+            <div class="container shadow text-center">
+                <div class="row m-2 border-bottom">
+                    <div class="col col-lg-2 p-2">ID</div>
+                    <div class="col p-2">Логин</div>
+                    <div class="col p-2">Действия</div>
+                </div>
+                <?php
+                $query = $db->admins_query($dblink);
+                while($data = mysqli_fetch_array($query)) {
+                    echo '<div class="row m-2 border-bottom">
+                        <div class="col col-lg-2" p-2>'.$data['id'].'</div>
+                        <div class="col p-2">'.$data['login'].'</div>
+                        <div class="col p-2">
+                        <a href="?page=settings&mode=adduser&type=edit&id='.$data['id'].'" role="button" class="btn m-1 btn-outline-primary"><i class="bi bi-pencil-square"></i>Изменить</a>';
+                        echo '<a href="?page=settings&mode=editpasswdform&id='.$data['id'].'" role="button" class="btn m-1 btn-outline-primary"><i class="bi bi-pencil-square"></i> Изменить пароль</a>';
+                        if ($_SESSION['login'] != $data['login']) {
+                        echo'<a href="?page=settings&mode=del&type=user&id='.$data['id'].'" role="button" class="btn m-1 btn-outline-danger"><i class="bi bi-trash"></i>Удалить</a><br>';
                         }
                     echo '</div>
                     </div>';
