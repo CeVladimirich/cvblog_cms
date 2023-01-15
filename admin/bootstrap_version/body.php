@@ -20,7 +20,7 @@ echo '<h1 class="p-2 m-3">Здравствуйте, '.$_SESSION['login'].'!</h1>
                 echo '<h5>'.$data['author'].'</h5>';
                 echo '<em>К посту: '.$sdata['title'].'. Дата написания: '.$date.'</em>';
                 echo '<p>'.$data['text'].'</p>
-                <a href="?page=comments&mode=setflag&flag=0&id='.$data['id'].'" role="button" class="btn m-1 btn-outline-danger"><i class="bi bi-trash"></i>Удалить</a><hr>';
+                <a href="?page=comments&mode=setflag&flag=0&id='.$data['id'].'" role="button" class="btn m-1 btn-outline-danger"><i class="bi bi-eye-slash"></i> Скрыть</a><hr>';
             }
             ?>
     </div>
