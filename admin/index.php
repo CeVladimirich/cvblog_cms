@@ -1,49 +1,51 @@
+<?php
+session_start();
+include "config.php";
+include "../libs/db_query.php";
+$db = new db_query();
+$login = $_SESSION['login'];
+$dblink = $db->start($server, $user, $password, $dbname);
+$query = $db->admin_query($dblink, $login);
+$edata = mysqli_fetch_array($query);
+$status = intval($edata['status']);
+mysqli_close($dblink);
+$keyid = 'CE'.$key.$_SERVER["REMOTE_ADDR"];
+$keyid = md5($keyid);
+if ( ( (is_null($_SESSION['devid'])) || $status != 1 ) || ($_SESSION['devid'] != $keyid) ) {
+	echo '<meta http-equiv="refresh" content="0;URL=login.php">';
+	exit(0);
+}
+?>
 <!DOCTYPE html>
-<html>
-	<head>
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<link rel="stylesheet" type="text/css" href="../css/main.css">
-		<title><?php include 'config.php'; echo $name; ?></title>
-		<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
-		<script src="prefixfree.min.js"></script>
-	</head>
-	<body>
-		<header>
-			<nav class="container">
-				<a href="<?php include 'config.php'; echo $url; ?>" id="logo"><p><?php include 'config.php'; echo $name; ?></p></a>
-				<p align="right">админка</p>
-			</nav>
-		</header>
-		<hr>
-		<div class="container row">
-			<div class="posts-list">
-				<?php
-				$yt = $_GET['page'];
-				switch($yt) {
-				case comments:
-				include 'comments.php';
-				break;
-				case settings:
-				include 'settings.php';
-				break;
-				case post:
-				include 'post.php';
-				break;
-				case login:
-				include 'adminlogin.php';
-				break;
-				default:
-				include 'def.php';
-				}
-				?>
-			</div>
-		</div>
-		<footer>
-			<div class="container">
-				<div class="footer-col"><span>Powered on Cevladimirich's Blog CMS<br>By CeVladimirich, 2022</span></div>
-				<div class="footer-col" align="right"><span><a href="mailto<?php include 'config.php'; echo $email; ?>">написать письмо</a></span></div>
-			</div>
-		</footer>
-	</body>
-	
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Админ-панель. Bootstrap version</title>
+    <link rel="stylesheet" href="../css/dashboard.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+</head>
+<body>
+            <?php
+            include 'header_side.php';
+            
+            $page = $_GET['page'];
+            if ($page == '') {
+                include 'body.php';
+            } else {
+                if(file_exists($page.'.php')) {
+                    include $page.'.php';
+                } else {
+                    include '404.php';
+                }
+            }
+
+            include 'footer.php';
+            ?>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script>
+    <script src="script.js"></script>
+</body>
+</html>
