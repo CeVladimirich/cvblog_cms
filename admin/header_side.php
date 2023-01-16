@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-lg bg-dark shadow sticky-top bg-dark flex-md-nowrap p-0">
     <div class="container-fluid">
     <a href="index.php" class="navbar-brand" style="color: #FFF; background-color: #212529; font-size: 17px;">
-    <img src="./../../css/ceblog_logo.png" alt="" width="32" height="32" class="d-inline-block align-text-block">
+    <img src="./../css/ceblog_logo.png" alt="" width="32" height="32" class="d-inline-block align-text-block">
     Админ-панель
     </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Переключатель">
@@ -14,7 +14,7 @@
 </a>
 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
 <?php
-include '../config.php';
+include 'config.php';
 include '/libs/db_query.php';
 $db = new db_query();
 $dblink = $db->start($server, $user, $password, $dbname);

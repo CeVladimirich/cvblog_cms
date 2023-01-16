@@ -8,8 +8,8 @@ echo '<h1 class="p-2 m-3">Здравствуйте, '.$_SESSION['login'].'!</h1>
     <div class="col-lg p-2 m-1 shadow">
         <h4>Последние комментарии:</h4>
         <?php
-            include '../config.php';
-            include_once('./../../libs/db_query.php');
+            include 'config.php';
+            include_once('./../libs/db_query.php');
             $db = new db_query();
             $dblink = $db->start($server, $user, $password, $dbname);
             $query = $db->comments_admin_query($dblink, 'id', 'DESC', 10, 1);
@@ -27,8 +27,8 @@ echo '<h1 class="p-2 m-3">Здравствуйте, '.$_SESSION['login'].'!</h1>
     <div class="col-lg p-2 m-1 shadow">
         <h4>Последние посты:</h4>
         <?php
-            include '../config.php';
-            include_once '../../libs/db_query.php';
+            include 'config.php';
+            include_once '../libs/db_query.php';
             $dblink = $db->start($server, $user, $password, $dbname);
             $query = $db->posts_query_admin($dblink, 1, 'date', 'DESC', 10);
             while($data = mysqli_fetch_array($query)) {
@@ -50,8 +50,8 @@ echo '<h1 class="p-2 m-3">Здравствуйте, '.$_SESSION['login'].'!</h1>
     <div class="col p-2 m-1 shadow">
         <h4>Неопубликованные посты</h4>
         <?php
-            include '../config.php';
-            include_once '../../libs/db_query.php';
+            include 'config.php';
+            include_once '../libs/db_query.php';
             $dblink = $db->start($server, $user, $password, $dbname);
             $query = $db->posts_query_admin_pf($dblink, 0, 'date', 'DESC');
             while($data = mysqli_fetch_array($query)) {

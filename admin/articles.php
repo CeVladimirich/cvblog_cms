@@ -1,6 +1,6 @@
 <?php
-require_once("./../config.php");
-require_once("./../../libs/db_query.php");
+require_once("./config.php");
+require_once("./../libs/db_query.php");
 $db = new db_query();
 $dblink = $db->start($server, $user, $password, $dbname);
 $mode = $_GET['mode'];
