@@ -83,7 +83,7 @@ class db_show {
     // Show admin container on index
     function show_admin() {
         echo '<div class="admin" style="background-color: #000; color:#FFF; padding: 5px;">
-        Здравствуйте, '.$_SESSION['login'].'. <a style="color: #fff; text-decoration: none;" href="/admin">Перейти в админ-панель</a> | <a href="/admin/bootstrap_version/?page=articles&mode=addpost" style="color: #fff; text-decoration: none;">Добавить пост</a> | <a href="/admin/bootstrap_version/login.php?mode=logout" style="color: #fff; text-decoration: none;">Выйти</a>
+        Здравствуйте, '.$_SESSION['login'].'. <a style="color: #fff; text-decoration: none;" href="/admin">Перейти в админ-панель</a> | <a href="/admin/?page=articles&mode=addpost" style="color: #fff; text-decoration: none;">Добавить пост</a> | <a href="/admin/login.php?mode=logout" style="color: #fff; text-decoration: none;">Выйти</a>
         </div>';
     }
 }
