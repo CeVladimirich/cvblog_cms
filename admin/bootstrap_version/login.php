@@ -70,7 +70,7 @@ switch($mode) {
                             <input type="password" name="password" id="floatingPassword" class="form-control">
                             <label for="floatingPassword">Пароль</label>
                             <button class="w-100 btn btn-lg btn-primary" type="submit">Войти</button>
-                            <p class="mt-5 mb-3 text-muted">CeBlog CMS. 2022-2023</p>
+                            <p class="mt-5 mb-3 text-muted">©CeBlog CMS. 2022-2023</p>
                         </div>
                     </form>
                 </main>
