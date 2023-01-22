@@ -53,7 +53,7 @@ echo '<h1 class="p-2 m-3">Здравствуйте, '.$_SESSION['login'].'!</h1>
             include 'config.php';
             include_once '../libs/db_query.php';
             $dblink = $db->start($server, $user, $password, $dbname);
-            $query = $db->posts_query_admin_pf($dblink, 0, 'date', 'DESC');
+            $query = $db->posts_query_admin_pf($dblink, 2, 'date', 'DESC');
             while($data = mysqli_fetch_array($query)) {
                 $squery = $db->topic_query_pages($dblink, $data['topicid']);
                 $sdata = mysqli_fetch_array($squery);
@@ -63,7 +63,7 @@ echo '<h1 class="p-2 m-3">Здравствуйте, '.$_SESSION['login'].'!</h1>
                 echo '<em>Топик: <a href="?page=articles&topic='.$sdata['id'].'">'.$sdata['topic'].'</a>. 
                 Дата создания: '.$date.', автор: '.$data['author'].'</em>';
                 echo '<p>'.$desc.'</p>';
-                echo '<a href="?page=articles&mode=addpost&type=edit&id='.$data['id'].'">Редактировать</a> | <a href="#">Опубликовать</a>';
+                echo '<a href="?page=articles&mode=addpost&type=edit&id='.$data['id'].'">Редактировать</a> | <a href="#">Опубликовать</a><hr>';
             }
             ?>
     </div>
