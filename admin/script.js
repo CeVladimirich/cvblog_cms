@@ -59,3 +59,9 @@ function addCenter() {
 function addRight() {
     insertTextAtCursor(document.querySelector('#articlePost'), '<p align="right"></p>');
 }
+function addul() {
+    insertTextAtCursor(document.querySelector('#articlePost'), '<ul>\n<li></li>\n</ul>');
+}
+function addol() {
+    insertTextAtCursor(document.querySelector('#articlePost'), '<ol>\n<li></li>\n</ol>');
+}

@@ -7,9 +7,9 @@ if($_GET['type'] == 'edit') {
     $sdata = mysqli_fetch_array($squery);
     $title = $sdata['title'];
     $desc = base64_decode($sdata['description']);
-    $desc = strip_tags($desc, "<a><b><h1><h2><h3><p><left><center><u><i><font>");
+    $desc = strip_tags($desc, "<a><b><h1><h2><h3><p><left><center><u><i><font><ol><ul><li>");
     $text = base64_decode($sdata['post']);
-    $post = strip_tags($text, "<a><b><h1><h2><h3><p><left><center><u><i><font>");
+    $post = strip_tags($text, "<a><b><h1><h2><h3><p><left><center><u><i><font><ol><ul><li>");
     $date = $sdata['date'];
     $date = date("Y-m-d", strtotime($date));
     $form_header = '<form method="post" action="?page=articles&mode=edit&id='.$sid.'">';
@@ -86,6 +86,10 @@ if($_GET['type'] == 'edit') {
                             <button type="button" onclick="addBlue()" class="btn btn-primary"><i class="bi bi-palette"></i></button>
                             <button type="button" onclick="addGreen()" class="btn btn-success"><i class="bi bi-palette"></i></button>
                             <button type="button" onclick="addYellow()" class="btn btn-warning"><i class="bi bi-palette"></i></button>
+                        </div>
+                        <div class="btn-group p-2" role="group" alia-label="">
+                            <button type="button" onclick="addul()" class="btn btn-light"><i class="bi bi-list-ul"></i></button>
+                            <button type="button" onclick="addol()" class="btn btn-light"><i class="bi bi-list-ol"></i></button>
                         </div>
                         <div class="btn-group p-2" role="group" alia-label="">
                             <button type="button" onclick="addLeft()" class="btn btn-light"><i class="bi bi-text-left"></i></button>
