@@ -43,7 +43,7 @@ class db_query {
     }
     // Return posts on index
     function posts_query_index($dblink, $topic, $id, $des) {
-        $query = mysqli_query($dblink, "SELECT * FROM posts WHERE topicid = $topic ORDER BY $id $des");
+        $query = mysqli_query($dblink, "SELECT * FROM posts WHERE topicid = $topic AND postflag = 1 ORDER BY $id $des");
         return $query;
     }
     // Return posts on admin (only postflag)
