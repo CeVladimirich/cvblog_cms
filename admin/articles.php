@@ -82,7 +82,15 @@ switch($mode) {
 
         // add in BD
 
-        mysqli_query($dblink, "INSERT INTO posts (date, topicid, postflag, title, author, post, description) VALUES ('$date', $tpc, $pf, '$name', '$author', '$article', '$desc')");
+        $dbq = $dblink->prepare("INSERT INTO posts (date, topicid, postflag, title, author, post, description) VALUES (':date', :tpc, :pf, ':name', ':author', ':article', ':desc')");
+        $dbq->bindParam(':date', $date);
+        $dbq->bindParam(':tpc', $tpc);
+        $dbq->bindParam(':pf', $pf);
+        $dbq->bindParam(':name', $name);
+        $dbq->bindParam(':author', $author);
+        $dbq->bindParam(':article', $article);
+        $dbq->bindParam(':desc', $desc);
+        $dbq->execute();        
         
         // return to admin panel
 
@@ -102,7 +110,10 @@ switch($mode) {
         $pf = $_GET['pf'];
         $sid = $_GET['id'];
         $tpc = $_GET['from_tpc'];
-        mysqli_query($dblink, "UPDATE posts SET postflag = $pf WHERE id = $sid");
+        $dbq = $dblink->execute("UPDATE posts SET postflag = :pf WHERE id = :id");
+        $dbq->bindParam(':pf', $pf);
+        $dbq->bindParam(':id', $sid);
+        $dbq->execute();
         echo '<meta http-equiv="refresh" content="0;URL=?page=articles&topic='.$tpc.'">';
         break;
     
