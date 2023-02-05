@@ -1,0 +1,3 @@
+Options -Indexes
+RewriteEngine on
+RedirectMatch 404 /admin/includes

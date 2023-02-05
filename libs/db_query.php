@@ -7,10 +7,14 @@
 class db_query {
     // Connect to database
     function start($server, $user, $password, $dbname) {
-        $dblink = mysqli_connect($server, $user, $password);
-        mysqli_select_db($dblink, $dbname);
-        mysqli_query($dblink, "SET NAMES 'utf8'");
-        return $dblink;
+        $dsn = "mysql:host=$server;dbname=$dbname;charset=utf8";
+        $opt = [
+            PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+            PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+            PDO::ATTR_EMULATE_PREPARES => false,
+        ];
+        $pdo = new PDO($dsn, $user, $password, $opt);
+        return $pdo;
     }
     // Return topics
     function topic_query($dblink) {

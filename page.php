@@ -7,17 +7,17 @@ $dblink = $db->start($server, $user, $password, $dbname);
 $page = $_GET['page'];
 $typ = $_GET['type'];
 switch($typ) {
-case com:
+case "com":
 $id = $_GET['post_id'];
 include "admin/config.php";
 $table2 = 'comments';
-$name = $_POST['name'];
+$name = htmlspecialchars($_POST['name']);
 $date = date("Y-m-d H:i");
-$text = $_POST['text'];
+$text = htmlspecialchars($_POST['text']);
 mysqli_query($dblink, "INSERT INTO $table2 (author, text, date, post_id) VALUES ('$name', '$text', '$date', $id)");
 echo '<meta http-equiv="refresh" content="0;URL=?page='.$page.'&type=read&id='.$id.'">';
 break;
-case read:
+case "read":
 $sid = $_GET['id'];
 $query2 = $db->post_query($dblink, $sid);
 $query4 =$db->topic_query_pages($dblink, $page);
