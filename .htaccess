@@ -1,13 +1,8 @@
 Options -Indexes
 RewriteEngine on
+<<<<<<< HEAD
 RewriteBase /
 RewriteRule ^index\.php$ - [L]
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^(.*)$ index.php?uri=$1 [L]
-AuthName "Вход в бета-версию сайта"
-AuthType Basic
-AuthUserFile /var/www/test/.htpasswd
-Require valid-user
-php_flag display_errors on
-php_value error_reporting -1

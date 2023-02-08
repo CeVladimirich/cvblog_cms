@@ -1,4 +1,5 @@
 <?php
+require("bootstrap.php");
 include_once('./config.php');
 include_once('./../libs/db_query.php');
 $db = new db_query();

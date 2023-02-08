@@ -7,13 +7,13 @@
 class db_query {
     // Connect to database
     function start($server, $user, $password, $dbname) {
-		$dsn = "mysql:host=$server;dbname=$dbname;charset=utf8";
-		$opt = [
-			PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-			PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
-			PDO::ATTR_EMULATE_PREPARES => false,
-		];
-		$pdo = new PDO($dsn, $user, $password, $opt);
+        $dsn = "mysql:host=$server;dbname=$dbname;charset=utf8";
+        $opt = [
+            PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+            PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+            PDO::ATTR_EMULATE_PREPARES => false,
+        ];
+        $pdo = new PDO($dsn, $user, $password, $opt);
         return $pdo;
     }
     // Get all from table
