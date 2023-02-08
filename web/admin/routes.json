@@ -1,0 +1,17 @@
+{
+    "login": {
+        "file": "includes/login_form.php"
+    },
+    "login/check": {
+        "file": "login.php"
+    },
+    "login/logout": {
+        "file": "login.php?mode=logout"
+    },
+    "articles":{
+        "file": "articles.php"
+    },
+    "": {
+        "file": "body.php"
+    }
+}
