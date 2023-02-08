@@ -1,6 +1,7 @@
 <?php
 //======MySQL DATABASE======
-$server = ""; 
-$user = "";
-$password = "";
-$dbname = "";
+$server = ""; // DB server, default - localhost
+$user = ""; // DB user
+$password = ""; // DB password
+$dbname = ""; // DB name
+?>

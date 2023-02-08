@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg bg-dark shadow sticky-top bg-dark flex-md-nowrap p-0">
     <div class="container-fluid">
-    <a href="index.php" class="navbar-brand" style="color: #FFF; background-color: #212529; font-size: 17px;">
+    <a href="/admin/" class="navbar-brand" style="color: #FFF; background-color: #212529; font-size: 17px;">
     <img src="/web/admin/css/ceblog_logo.png" alt="" width="32" height="32" class="d-inline-block align-text-block">
     Админ-панель
     </a>
@@ -14,12 +14,12 @@
 </a>
 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
 <?php
-include 'config.php';
-include '/libs/db_query.php';
+require(__DIR__.'/../config.php');
+require_once(__DIR__.'/../../../libs/db_query.php');
 $db = new db_query();
 $dblink = $db->start($server, $user, $password, $dbname);
-foreach($db->getArray($dblink, "topics") as $data) {
-    echo '<li><a href="?page=articles&topic='.$data['id'].'" class="dropdown-item">'.$data['topic'].'</a></li>';
+foreach($db->getArray($dblink, "topics", "", "", "") as $data) {
+    echo '<li><a href="/articles/'.$data['id'].'" class="dropdown-item">'.$data['topic'].'</a></li>';
 }
 ?>
 <li><hr class="dropdown-divider"></li>

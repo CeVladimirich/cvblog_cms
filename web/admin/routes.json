@@ -13,5 +13,11 @@
     },
     "": {
         "file": "body.php"
+    },
+    "articles/add": {
+        "file": "artciles.php?mode=add"
+    },
+    "articles/{id}": {
+        "file": "artciles.php?topicid={id}"
     }
 }

@@ -20,6 +20,16 @@ class Show {
             $this->show_page_admin($json[$page]["file"]);
         }
     }
+    function get_admin_id($page, $id) {
+        $json = file_get_contents(__DIR__.'/../web/admin/routes.json');
+        $json = json_decode($json, true);
+        if ($page == "login" || $page == "login/check") {
+            require(__DIR__."/../web/admin/".$json[$page]["file"]);
+        } else {
+            $this->show_page_admin($json[$page]["file"]);
+        }
+        return $id;
+    }
     function get_admin_index() {
         $this->show_page_admin("body.php");
     }

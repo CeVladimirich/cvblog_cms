@@ -12,7 +12,7 @@
 <body>
 <body class="text-center">
     <main class="form-signin">
-        <form method="post" action="/admin/login/check">
+        <form method="post" id="loginform">
             <img src="/web/admin/css/ceblog_logo.png" width="80" height="80" alt="">
             <h1 class="h3 mb-3 fw-normal">Вход в админ-панель</h1>
             <div class="form-floating">

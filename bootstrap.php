@@ -8,6 +8,5 @@ require_once(__DIR__."/web/routes/routes.php");
 // Select theme
 $db = new db_query();
 $dblink = $db->start($server, $user, $password, $dbname);
-$query = $db->getRecord($dblink, 'config', 'name', 'active_theme');
-$theme = $query->fetchAll();
-$_SESSION['theme'] = $theme;
+$query = $db->getRecord($dblink, 'config', 'name', 'active_theme', "", "", "");
+$_SESSION['theme'] = $query['value'];

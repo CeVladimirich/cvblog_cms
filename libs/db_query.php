@@ -22,12 +22,12 @@ class db_query {
 		$order_sql = "ORDER BY $col $order";
 		if ($col != "" || $order != "") {
 			if ($limit != "") {
-				$sql = "SELECT * FROM $table ".$order_sql.$limit_sql;
+				$sql = "SELECT * FROM $table ".$order_sql." ".$limit_sql;
 				$query = $pdo->prepare($sql);
 				$query->execute([':lim' => $limit]);
 				$query = $query->fetch(PDO::FETCH_ASSOC);
 			} else {
-				$query = $pdo->query("SELECT * FROM $table".$order_sql);
+				$query = $pdo->query("SELECT * FROM $table ".$order_sql);
 			}
 		} else {
 		$query = $pdo->query("SELECT * FROM $table");
@@ -40,12 +40,12 @@ class db_query {
 		$limit_sql = "LIMIT :lim";
 		if ($col_order != "" || $order != "") {
 			if ($limit != "") {
-				$sql = "SELECT * FROM $table WHERE $col = :id ".$order_sql.$limit_sql;
+				$sql = "SELECT * FROM $table WHERE $col = :id ".$order_sql." ".$limit_sql;
 				$query = $pdo->prepare($sql);
 				$query->execute([':id'=> $id, ':lim' => $limit]);
-				$query = $query->fetch(PDO::FETCH_ASSOC);
+				$array = $query->fetch(PDO::FETCH_ASSOC);
 			} else {
-				$sql = "SELECT * FROM $table WHERE $col = :id".$order_sql;
+				$sql = "SELECT * FROM $table WHERE $col = :id ".$order_sql;
 				$prep = $pdo->prepare($sql);
 				$prep->execute(['id' => $id]);
 				$array = $prep->fetch(PDO::FETCH_ASSOC);

@@ -7,6 +7,7 @@ $dispatcher = FastRoute\simpleDispatcher(function(FastRoute\RouteCollector $r) {
     $r->addRoute('GET', '/pages/{id:\d+}', Show::class.'/get_user_id');
     $r->addRoute('GET', '/admin/', Show::class.'/get_admin_index');
     $r->addRoute(['GET', 'POST'], '/admin/{page:.+}', Show::class.'/get_admin');
+    $r->addRoute(['GET', 'POST'], '/admin/{page:.+}/{id:\d+}', Show::class.'/get_admin_id');
 });
 // ====EDIT HERE====
 
