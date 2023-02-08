@@ -1,6 +1,5 @@
 Options -Indexes
 RewriteEngine on
-<<<<<<< HEAD
 RewriteBase /
 RewriteRule ^index\.php$ - [L]
 RewriteCond %{REQUEST_FILENAME} !-f
